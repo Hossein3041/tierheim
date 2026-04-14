@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: local-database-tierheim
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: local_user # Benutzername
+      POSTGRES_PASSWORD: password # Passwort
+      POSTGRES_DB: local-db # Name der Datenbank
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Persistente Daten
+
+volumes:
+  postgres_data:

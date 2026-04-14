@@ -1,0 +1,220 @@
+{
+	"info": {
+		"_postman_id": "50a948b7-c376-4e6d-9d86-a53467d2fea4",
+		"name": "Tierheim API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43010525",
+		"_collection_link": "https://web.postman.co/workspace/7d6b4ad9-162d-49ea-a4a1-a9e531652d8b/collection/43010525-50a948b7-c376-4e6d-9d86-a53467d2fea4?action=share&source=collection_link&creator=43010525"
+	},
+	"item": [
+		{
+			"name": "pet/overview",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/tierheim/api/private/pet/overview",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tierheim",
+						"api",
+						"private",
+						"pet",
+						"overview"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pet/id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/tierheim/api/private/pet/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tierheim",
+						"api",
+						"private",
+						"pet",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pet/create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Testhund 2\",\n  \"species\": \"Hund\",\n  \"birthdate\": \"2022-04-15\",\n  \"breed\": \"Labrador\",\n  \"color\": \"Braun\",\n  \"sex\": \"FEMALE\",\n  \"finderName\": \"Anna Mailler\",\n  \"foundLocation\": \"Pasinger Wald\",\n  \"foundDate\": \"2023-11-01\",\n  \"finderAddress\": \"Waldstraße 5, 81241 München\",\n  \"finderPhone\": \"08912345678\",\n  \"chipNumber\": \"123456789012345\",\n  \"isRegistered\": true,\n  \"isNeutered\": false,\n  \"specialCharacteristics\": \"Sehr zutraulich, kleiner weißer Fleck an der Pfote\",\n  \"hasExtraInvoice\": false,\n  \"isArchived\": false,\n  \"animalReasonReceiveType\": \"POLICE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/tierheim/api/private/apikey/pet/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tierheim",
+						"api",
+						"private",
+						"apikey",
+						"pet",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pet/colors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/tierheim/api/private/pet/colors",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tierheim",
+						"api",
+						"private",
+						"pet",
+						"colors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pet/breeds",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/tierheim/api/private/pet/breeds",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tierheim",
+						"api",
+						"private",
+						"pet",
+						"breeds"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pet/species",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/tierheim/api/private/pet/species",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tierheim",
+						"api",
+						"private",
+						"pet",
+						"species"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/getUnits",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/tierheim/api/private/occupancy/units",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tierheim",
+						"api",
+						"private",
+						"occupancy",
+						"units"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/getLocations",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/tierheim/api/private/occupancy/locations",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tierheim",
+						"api",
+						"private",
+						"occupancy",
+						"locations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/getSections/5",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/tierheim/api/private/occupancy/sections/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tierheim",
+						"api",
+						"private",
+						"occupancy",
+						"sections",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

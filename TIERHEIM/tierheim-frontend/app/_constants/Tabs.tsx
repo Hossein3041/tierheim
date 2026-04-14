@@ -1,0 +1,13 @@
+export enum NAVIGATIONTABS {
+  APPOINTMENTS = "Termine",
+  ANIMALS = "Tiere",
+  OCCUPANCY = "Belegung",
+}
+
+export const NAVIGATIONTAB_KEYS = Object.keys(NAVIGATIONTABS) as Array<keyof typeof NAVIGATIONTABS>;
+ 
+export const NAVIGATION_TAB_ORDER = [
+  NAVIGATIONTABS.APPOINTMENTS,
+  NAVIGATIONTABS.ANIMALS,
+  NAVIGATIONTABS.OCCUPANCY,
+] as const;

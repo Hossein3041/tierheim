@@ -1,0 +1,6 @@
+# There has to be some condition, else the cloudformation script will fail when building.
+# That is because all the Parts (conditions, parameters and resources) will be parsed into a single cloudformation file,
+# that file cannot contain an emtpy conditions section and there is no mechanism yet to only include the conditions if there are entries.
+IsProd: !Or
+  - !Equals [!Ref Environment, "prod"]
+  - !Equals [!Ref Environment, "wagener"]

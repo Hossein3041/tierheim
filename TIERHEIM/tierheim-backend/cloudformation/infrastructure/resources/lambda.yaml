@@ -1,0 +1,41 @@
+ExampleFunction:
+  Type: AWS::Lambda::Function
+  Properties:
+    Architectures:
+      - !Ref LambdaArchitecture
+    Code:
+      S3Bucket: !Ref LambdaCodeS3Bucket
+      S3Key: !Sub
+        - "${ProjectName}/${AppName}/${Environment}_function.zip"
+        - ProjectName: !Ref ProjectName
+          AppName: !Ref AppName
+          Environment: !Ref Environment
+      S3ObjectVersion: !Ref LambdaCodeVersion
+    Description: !Ref LambdaDescription
+    Environment:
+      Variables:
+        MICRONAUT_ENVIRONMENTS: !Ref Environment
+        COGNITO_USER_POOL_ID: !GetAtt CognitoCustomResource.UserPoolId
+        COGNITO_CLIENT_ID: !GetAtt CognitoCustomResource.UserPoolClientId
+    FunctionName: !Sub
+      - "${Environment}-${ProjectName}-${AppName}"
+      - Environment: !Ref Environment
+        ProjectName: !Ref ProjectName
+        AppName: !Ref AppName
+    Handler: !Ref LambdaHandler
+    MemorySize: !Ref LambdaMemorySize
+    PackageType: !Ref LambdaPackageType
+    ReservedConcurrentExecutions: !Ref LambdaReservedConcurrentExecutions
+    Role: "arn:aws:iam::160184391904:role/AdministratorAccess"
+    Runtime: !Ref LambdaRuntime
+    Tags:
+      - Key: "Environment"
+        Value: !Ref Environment
+      - Key: "ProjectName"
+        Value: !Ref ProjectName
+    Timeout: !Ref LambdaTimeout
+    VpcConfig:
+      SecurityGroupIds:
+        - sg-093c3b703d17cc70c
+      SubnetIds:
+        - subnet-003d8bdc5d632ec66

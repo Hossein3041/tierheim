@@ -1,0 +1,44 @@
+EmptyS3LambdaExecutionRole:
+  Type: 'AWS::IAM::Role'
+  Properties:
+    AssumeRolePolicyDocument:
+      Version: '2012-10-17'
+      Statement:
+        - Effect: 'Allow'
+          Principal:
+            Service: 'lambda.amazonaws.com'
+          Action: 'sts:AssumeRole'
+    Policies:
+      - PolicyName: 'root'
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: 'Allow'
+              Action:
+                - 'logs:*'
+                - 's3:*'
+              Resource: '*'
+EmptyS3BucketFunction:
+  Type: 'AWS::Lambda::Function'
+  Properties:
+    Handler: 'index.lambda_handler'
+    Role: !GetAtt EmptyS3LambdaExecutionRole.Arn
+    Timeout: 900
+    Runtime: 'python3.12'
+    Code:
+      ZipFile: |
+        $IMPORT("clear_bucket.py")$
+EmptyS3BucketCustomResource:
+  Type: 'Custom::EmptyS3Bucket'
+  DependsOn:
+    - "S3Bucket"
+  Properties:
+    ServiceToken: !GetAtt EmptyS3BucketFunction.Arn
+    BucketName: !Sub "${Environment}-${ProjectName}-${AppName}"
+EmptyFilesS3BucketCustomResource:
+  Type: 'Custom::EmptyS3Bucket'
+  DependsOn:
+    - "FilesS3Bucket"
+  Properties:
+    ServiceToken: !GetAtt EmptyS3BucketFunction.Arn
+    BucketName: !Sub "${Environment}-${ProjectName}-files"

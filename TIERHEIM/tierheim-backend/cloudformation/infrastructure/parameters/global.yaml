@@ -1,0 +1,26 @@
+AppName:
+  Description: "Der Name der Anwendung, die bereitgestellt werden soll."
+  Type: String
+  MinLength: 3
+  MaxLength: 16
+  AllowedPattern: "[a-z0-9-]+"
+  ConstraintDescription: "Malformed input-Parameter AppName must match pattern [a-z0-9-]+"
+Environment:
+  Description: "Der Name der Anwendung, die bereitgestellt werden soll."
+  Type: String
+  MinLength: 3
+  MaxLength: 16
+  AllowedPattern: "[A-Za-z0-9-]+"
+  ConstraintDescription: "Malformed input-Parameter Environment must match pattern [A-Za-z0-9-]+"
+ProjectName:
+  Description: "Der Name des Projektes für das die Ressource bereitgestellt wird."
+  Type: String
+  MinLength: 3
+  MaxLength: 32
+  AllowedPattern: "[a-z0-9-]+"
+  ConstraintDescription: "Malformed input-Parameter ProjectName must match pattern [a-z0-9-]+"
+DomainName:
+  Description: "Der Name der Domain des Projektes."
+  Type: String
+  MinLength: 4
+  MaxLength: 32

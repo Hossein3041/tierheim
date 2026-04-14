@@ -1,0 +1,72 @@
+Log make.sh 2025-11-25T11:24:40+01:00:
+
+up to date, audited 426 packages in 1s
+
+166 packages are looking for funding
+  run `npm fund` for details
+
+3 vulnerabilities (1 low, 2 moderate)
+
+To address all issues, run:
+  npm audit fix
+
+Run `npm audit` for details.
+
+> frontend-microservice-template@0.1.0 build
+> next build
+
+   ▲ Next.js 15.3.4
+   - Environments: .env
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 4.0s
+   Linting and checking validity of types ...
+
+./app/_components/TabView/PetsTabs.tsx
+69:6  Warning: React Hook useMemo has an unnecessary dependency: 'isMobile'. Either exclude it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/_components/archive/PetArchivedModal.tsx
+91:6  Warning: React Hook React.useEffect has missing dependencies: 'isDesktop', 'isTablet', 'isTabletHorizontal', 'isTabletVertical', 'screenWidth', and 'viewportWidth'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/_components/archive/PetArchivedTabs.tsx
+71:9  Warning: The 'categorizedPets' logical expression could make the dependencies of useMemo Hook (at line 84) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'categorizedPets' in its own useMemo() Hook.  react-hooks/exhaustive-deps
+125:6  Warning: React Hook React.useEffect has a missing dependency: 'isTabletVertical'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/_components/authentications/AuthenticationWrapper.tsx
+26:16  Warning: Assignments to the 'path' variable from inside React Hook useEffect will be lost after each render. To preserve the value over time, store it in a useRef Hook and keep the mutable value in the '.current' property. Otherwise, you can move this variable directly inside useEffect.  react-hooks/exhaustive-deps
+
+./app/_components/modals/petModals.tsx
+216:6  Warning: React Hook useMemo has missing dependencies: 'imageSizeMobile', 'imageSizeTabletHorizontal', and 'imageSizeTabletVertical'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/_components/room/EdgeSwipeDuringDrag.tsx
+64:6  Warning: React Hook useEffect has a missing dependency: 'onZoneChange'. Either include it or remove the dependency array. If 'onZoneChange' changes too often, find the parent component that defines it and wrap that definition in useCallback.  react-hooks/exhaustive-deps
+130:6  Warning: React Hook useEffect has missing dependencies: 'cooldownMs', 'dwellMs', 'hotFrac', 'hotMax', 'hotMin', 'onDwell', 'onZoneChange', 'scrollerRef', and 'vPad'. Either include them or remove the dependency array. If 'onZoneChange' changes too often, find the parent component that defines it and wrap that definition in useCallback.  react-hooks/exhaustive-deps
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+   Collecting page data ...
+   Generating static pages (0/9) ...
+   Generating static pages (2/9) 
+   Generating static pages (4/9) 
+   Generating static pages (6/9) 
+ ✓ Generating static pages (9/9)
+   Finalizing page optimization ...
+   Collecting build traces ...
+   Exporting (0/3) ...
+ ✓ Exporting (3/3)
+
+Route (app)                                 Size  First Load JS
+┌ ○ /                                      285 B         181 kB
+├ ○ /_not-found                            137 B         102 kB
+├ ○ /dashboard                             389 B         102 kB
+├ ○ /dashboard/animals                   3.53 kB         310 kB
+├ ○ /dashboard/appointments              26.2 kB         332 kB
+├ ○ /dashboard/occupancy                 28.8 kB         337 kB
+└ ○ /login                                 191 B         181 kB
++ First Load JS shared by all             102 kB
+  ├ chunks/4bd1b696-ee39b84f6561053b.js  53.2 kB
+  ├ chunks/684-8c299eb7db6f01b9.js       46.5 kB
+  └ other shared chunks (total)          1.94 kB
+
+
+○  (Static)  prerendered as static content
+

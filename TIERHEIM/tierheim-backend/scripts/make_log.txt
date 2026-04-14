@@ -1,0 +1,350 @@
+Log make.sh 2025-11-25T11:14:39+01:00:
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------< solutions.sideklick:tierheim-backend >----------------
+[INFO] Building tierheim-backend 0.1.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ tierheim-backend ---
+[INFO] Deleting /home/praktikant/Dokumente/workspace/TIERHEIM/tierheim-backend/target
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.514 s
+[INFO] Finished at: 2025-11-25T11:14:41+01:00
+[INFO] ------------------------------------------------------------------------
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------< solutions.sideklick:tierheim-backend >----------------
+[INFO] Building tierheim-backend 0.1.0
+[INFO]   from pom.xml
+[INFO] ---------------------------[ docker-native ]----------------------------
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (micronaut-enforce) @ tierheim-backend ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 1: io.micronaut.maven.enforcer.CheckSnakeYaml passed
+[INFO] 
+[INFO] --- mn:4.8.2:generate-openapi-generic (default-generate-openapi-generic) @ tierheim-backend ---
+[INFO] 
+[INFO] --- mn:4.8.2:generate-openapi-client (default-generate-openapi-client) @ tierheim-backend ---
+[INFO] 
+[INFO] --- mn:4.8.2:generate-openapi-server (default-generate-openapi-server) @ tierheim-backend ---
+[INFO] 
+[INFO] --- mn:4.8.2:generate-jsonschema (default-generate-jsonschema) @ tierheim-backend ---
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ tierheim-backend ---
+[INFO] Copying 26 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ tierheim-backend ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 134 source files with javac [debug parameters release 21] to target/classes
+[INFO] 
+[INFO] --- native:0.10.6:generateResourceConfig (default-generateResourceConfig) @ tierheim-backend ---
+[INFO] Detected resources for /home/praktikant/Dokumente/workspace/TIERHEIM/tierheim-backend/target/classes are [META-INF/native-image/native-image.properties, META-INF/native-image/reflect-config.json, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$AppointmentEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$PetBreedEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$PetEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$MessageEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$PetMedicationEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$LocationEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$AppointmentCategoryEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.$Application$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$PetFoodEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$PetColorEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$SectionEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$PetSpeciesEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$AppointmentTypeEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$UnitEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$PlacementStatusEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$FinderEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$PetUpdateBodyDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$AppointmentTypeDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.clients.com.openai.completions.dtos.in.$solutions_sideklick_generic_clients_com_openai_completions_dtos_in_OpenApiRequest$OpenApiRequestBuilder$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.types.chat.$solutions_sideklick_generic_types_chat_MarkdownExtractionSchema$Schema$SchemaBuilder$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$FinderListItemDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.clients.com.openai.completions.dtos.in.$OpenApiRequest$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$ReferencedPetRef$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$PetEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$UnitsBySectionDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$LocationDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.types.chat.$solutions_sideklick_generic_types_chat_MarkdownExtractionSchema$SchemaProperties$SchemaPropertiesBuilder$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$CheckAppointmentRequest$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$AppointmentEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.out.$LoginOutDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$LocationSectionPet$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$PetFoodEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.$UserDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$UpdateUnitDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.out.$RefreshTokenOutDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$PetCreateBody$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$CategorizedLocationsOverviewDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$FoodDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$PlacementStatusEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$CheckAppointmentResponse$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$AppointmentsOverviewDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$AppointmentCategoryEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$PetInUnitDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$AiMatchResultDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$PetReferenceDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.clients.com.openai.completions.dtos.out.$OpenaiApiCompletionsOutDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.in.$ConfirmUserInDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$PetBreedEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.types.chat.$MarkdownExtractionSchema$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.in.$ConfirmInDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.types.user.$RoleType$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$AppointmentRequestDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.read.$solutions_sideklick_authentication_dtos_read_UserReadDto$UserReadDtoBuilder$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.types.chat.$MarkdownExtractionSchema$Property$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$LocationEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$AppointmentItemDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$PetHistoryEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.out.$solutions_sideklick_authentication_dtos_out_LoginOutDto$LoginOutDtoBuilder$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$PetColorEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.types.chat.$MarkdownExtractionSchema$SchemaProperties$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.types.chat.$ResponseFormat$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$AppointmentCategoryDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$AppointmentTypeEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$PetOverviewDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$PlacementStatusDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$NameIdPairDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$MedicationDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.types.chat.$solutions_sideklick_generic_types_chat_ResponseFormat$ResponseFormatBuilder$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.types.chat.$MessageType$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$UnitDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$UnitEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$MessageEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$PetDetailsDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.out.$solutions_sideklick_authentication_dtos_out_RefreshTokenOutDto$RefreshTokenOutDtoBuilder$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.types.chat.$solutions_sideklick_generic_types_chat_MarkdownExtractionSchema$MarkdownExtractionSchemaBuilder$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$UnitWithPetsDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$SectionEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$PetSummaryDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.clients.com.openai.completions.types.$OpenaiApiCompletionsChoiceType$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.types.chat.$solutions_sideklick_generic_types_chat_MarkdownExtractionSchema$Property$PropertyBuilder$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$ColorDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$CategorizedPetOverviewDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.error.$ErrorDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$LocationsOverviewDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.types.chat.$MarkdownExtractionSchema$Schema$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.in.$LoginInDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$PetSpeciesEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.clients.com.openai.completions.types.$OpenaiApiCompletionsUsageType$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.create.$solutions_sideklick_authentication_dtos_create_UserCreateDto$UserCreateDtoBuilder$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$FinderEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.clients.com.openai.completions.types.$OpenaiApiCompletionsMessageType$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.read.$UserReadDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$SectionDetailDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$SpeciesDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.create.$UserCreateDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$BreedDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$SectionDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$PetMedicationEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.$solutions_sideklick_authentication_dtos_UserDto$UserDtoBuilder$Introspection, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$SectionRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.services.$UnitService$Definition$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.services.$LocationService$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.authentication.aop.interceptors.$DeniedRoleInterceptor$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.controller.$PetMetaController$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.controller.$AppointmentController$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.generic.mappers.$GenericMapper$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.authentication.aop.binders.$UserBinder$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$PetMedicationRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.services.$MessageService$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.authentication.controllers.$UserController$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.controller.$UnitController$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.authentication.services.$UserService$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.services.$AppointmentService$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.controller.$PetController$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.services.$UnitService$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.authentication.services.$UserService$Definition$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.services.$PetService$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$LocationRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$AppointmentTypeRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.controller.$PingController$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$PetRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.services.$PetMetadataService$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.services.$SuggestionService$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.services.$PetAiMatchingService$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.services.$SectionService$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.generic.exceptions.handlers.$DefaultExceptionHandler$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$ColorRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.services.$PetService$Definition$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$PetFoodRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.authentication.aop.interceptors.$AllowedRoleInterceptor$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.controller.$MessageController$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$PetSpeciesRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$PlacementStatusRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$AppointmentRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$BreedRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.controller.$OccupancyController$Definition$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.authentication.exeptions.handlers.$UnauthorizedExceptionHandler$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.services.$AppointmentService$Definition$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.authentication.controllers.$UserController$Definition$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$UnitRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.controller.$OccupancyController$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.entities.$PlacementStatusEntity$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$AppointmentCategoryRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$MessageRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$FinderRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.controller.$SuggestionController$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.generic.clients.com.openai.$OpenaiApiClient$Intercepted$Definition, DB/CREATE_Pet_Medications.sql, DB/CREATE_Appointment_Types.sql, DB/CREATE_Pet_Breeds.sql, DB/CREATE_Finder.sql, DB/CREATE_Appointments.sql, DB/CREATE_Locations.sql, DB/CREATE_Pet_Species.sql, DB/create-appointment-types.sql, DB/CREATE_Units.sql, DB/CREATE_Pets.sql, DB/CREATE_Pets2Food.sql, DB/CREATE_Sections.sql, DB/CREATE_Pet_Food.sql, DB/tables.sql, DB/CREATE_Pet_History.sql, DB/create-appointments-testdata.sql, DB/add-checked-column-appointments.sql, DB/CREATE_Pets2Medications.sql, DB/CREATE_Pet_Colors.sql, DB/create-testdata.sql, DB/create-appointment-categories.sql, logback.xml, application-loc.properties, application.properties]
+[INFO] Resources configuration written into /home/praktikant/Dokumente/workspace/TIERHEIM/tierheim-backend/target/native/generated/generateResourceConfig/resource-config.json
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ tierheim-backend ---
+[INFO] skip non existing resourceDirectory /home/praktikant/Dokumente/workspace/TIERHEIM/tierheim-backend/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ tierheim-backend ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- native:0.10.6:generateTestResourceConfig (default-generateTestResourceConfig) @ tierheim-backend ---
+[INFO] Detected resources for /home/praktikant/Dokumente/workspace/TIERHEIM/tierheim-backend/target/classes are [META-INF/native-image/native-image.properties, META-INF/native-image/reflect-config.json, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$AppointmentEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$PetBreedEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$PetEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$MessageEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$PetMedicationEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$LocationEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$AppointmentCategoryEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.$Application$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$PetFoodEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$PetColorEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$SectionEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$PetSpeciesEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$AppointmentTypeEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$UnitEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$PlacementStatusEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.graal.GraalReflectionConfigurer/solutions.sideklick.entities.$FinderEntity$ReflectConfig, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$PetUpdateBodyDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$AppointmentTypeDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.clients.com.openai.completions.dtos.in.$solutions_sideklick_generic_clients_com_openai_completions_dtos_in_OpenApiRequest$OpenApiRequestBuilder$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.types.chat.$solutions_sideklick_generic_types_chat_MarkdownExtractionSchema$Schema$SchemaBuilder$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$FinderListItemDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.clients.com.openai.completions.dtos.in.$OpenApiRequest$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$ReferencedPetRef$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$PetEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$UnitsBySectionDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$LocationDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.types.chat.$solutions_sideklick_generic_types_chat_MarkdownExtractionSchema$SchemaProperties$SchemaPropertiesBuilder$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$CheckAppointmentRequest$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$AppointmentEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.out.$LoginOutDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$LocationSectionPet$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$PetFoodEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.$UserDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$UpdateUnitDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.out.$RefreshTokenOutDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$PetCreateBody$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$CategorizedLocationsOverviewDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$FoodDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$PlacementStatusEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$CheckAppointmentResponse$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$AppointmentsOverviewDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$AppointmentCategoryEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$PetInUnitDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$AiMatchResultDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$PetReferenceDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.clients.com.openai.completions.dtos.out.$OpenaiApiCompletionsOutDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.in.$ConfirmUserInDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$PetBreedEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.types.chat.$MarkdownExtractionSchema$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.in.$ConfirmInDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.types.user.$RoleType$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$AppointmentRequestDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.read.$solutions_sideklick_authentication_dtos_read_UserReadDto$UserReadDtoBuilder$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.types.chat.$MarkdownExtractionSchema$Property$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$LocationEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$AppointmentItemDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$PetHistoryEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.out.$solutions_sideklick_authentication_dtos_out_LoginOutDto$LoginOutDtoBuilder$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$PetColorEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.types.chat.$MarkdownExtractionSchema$SchemaProperties$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.types.chat.$ResponseFormat$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$AppointmentCategoryDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$AppointmentTypeEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$PetOverviewDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$PlacementStatusDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$NameIdPairDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$MedicationDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.types.chat.$solutions_sideklick_generic_types_chat_ResponseFormat$ResponseFormatBuilder$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.types.chat.$MessageType$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$UnitDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$UnitEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$MessageEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$PetDetailsDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.out.$solutions_sideklick_authentication_dtos_out_RefreshTokenOutDto$RefreshTokenOutDtoBuilder$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.types.chat.$solutions_sideklick_generic_types_chat_MarkdownExtractionSchema$MarkdownExtractionSchemaBuilder$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$UnitWithPetsDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$SectionEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$PetSummaryDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.clients.com.openai.completions.types.$OpenaiApiCompletionsChoiceType$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.types.chat.$solutions_sideklick_generic_types_chat_MarkdownExtractionSchema$Property$PropertyBuilder$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$ColorDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$CategorizedPetOverviewDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.error.$ErrorDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$LocationsOverviewDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.types.chat.$MarkdownExtractionSchema$Schema$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.in.$LoginInDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$PetSpeciesEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.clients.com.openai.completions.types.$OpenaiApiCompletionsUsageType$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.create.$solutions_sideklick_authentication_dtos_create_UserCreateDto$UserCreateDtoBuilder$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$FinderEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.generic.clients.com.openai.completions.types.$OpenaiApiCompletionsMessageType$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.read.$UserReadDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$SectionDetailDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$SpeciesDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.create.$UserCreateDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$BreedDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.dtos.$SectionDto$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.entities.$PetMedicationEntity$Introspection, META-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/solutions.sideklick.authentication.dtos.$solutions_sideklick_authentication_dtos_UserDto$UserDtoBuilder$Introspection, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$SectionRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.services.$UnitService$Definition$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.services.$LocationService$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.authentication.aop.interceptors.$DeniedRoleInterceptor$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.controller.$PetMetaController$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.controller.$AppointmentController$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.generic.mappers.$GenericMapper$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.authentication.aop.binders.$UserBinder$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$PetMedicationRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.services.$MessageService$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.authentication.controllers.$UserController$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.controller.$UnitController$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.authentication.services.$UserService$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.services.$AppointmentService$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.controller.$PetController$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.services.$UnitService$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.authentication.services.$UserService$Definition$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.services.$PetService$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$LocationRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$AppointmentTypeRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.controller.$PingController$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$PetRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.services.$PetMetadataService$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.services.$SuggestionService$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.services.$PetAiMatchingService$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.services.$SectionService$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.generic.exceptions.handlers.$DefaultExceptionHandler$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$ColorRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.services.$PetService$Definition$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$PetFoodRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.authentication.aop.interceptors.$AllowedRoleInterceptor$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.controller.$MessageController$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$PetSpeciesRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$PlacementStatusRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$AppointmentRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$BreedRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.controller.$OccupancyController$Definition$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.authentication.exeptions.handlers.$UnauthorizedExceptionHandler$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.services.$AppointmentService$Definition$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.authentication.controllers.$UserController$Definition$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$UnitRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.controller.$OccupancyController$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.entities.$PlacementStatusEntity$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$AppointmentCategoryRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$MessageRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.repository.$FinderRepository$Intercepted$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.controller.$SuggestionController$Definition, META-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/solutions.sideklick.generic.clients.com.openai.$OpenaiApiClient$Intercepted$Definition, DB/CREATE_Pet_Medications.sql, DB/CREATE_Appointment_Types.sql, DB/CREATE_Pet_Breeds.sql, DB/CREATE_Finder.sql, DB/CREATE_Appointments.sql, DB/CREATE_Locations.sql, DB/CREATE_Pet_Species.sql, DB/create-appointment-types.sql, DB/CREATE_Units.sql, DB/CREATE_Pets.sql, DB/CREATE_Pets2Food.sql, DB/CREATE_Sections.sql, DB/CREATE_Pet_Food.sql, DB/tables.sql, DB/CREATE_Pet_History.sql, DB/create-appointments-testdata.sql, DB/add-checked-column-appointments.sql, DB/CREATE_Pets2Medications.sql, DB/CREATE_Pet_Colors.sql, DB/create-testdata.sql, DB/create-appointment-categories.sql, logback.xml, application-loc.properties, application.properties]
+[INFO] Detected resources for /home/praktikant/Dokumente/workspace/TIERHEIM/tierheim-backend/src/test/resources are []
+[INFO] Resources configuration written into /home/praktikant/Dokumente/workspace/TIERHEIM/tierheim-backend/target/native/generated/generateTestResourceConfig/resource-config.json
+[INFO] 
+[INFO] --- mn:4.8.2:start-testresources-service (default-start-testresources-service) @ tierheim-backend ---
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ tierheim-backend ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- mn:4.8.2:stop-testresources-service (default-stop-testresources-service) @ tierheim-backend ---
+[INFO] 
+[INFO] --- mn:4.8.2:aot-analysis (default-aot-analysis) @ tierheim-backend ---
+[INFO] 
+[INFO] --- native:0.10.6:write-args-file (default-write-args-file) @ tierheim-backend ---
+[INFO] Downloaded GraalVM reachability metadata repository from file:/home/praktikant/.m2/repository/org/graalvm/buildtools/graalvm-reachability-metadata/0.10.6/graalvm-reachability-metadata-0.10.6-repository.zip
+[INFO] [graalvm reachability metadata repository for ch.qos.logback:logback-classic:1.5.16]: Configuration directory not found. Trying latest version.
+[INFO] [graalvm reachability metadata repository for ch.qos.logback:logback-classic:1.5.16]: Configuration directory is ch.qos.logback/logback-classic/1.4.9
+[WARNING] Properties file at 'jar:file:///home/praktikant/.m2/repository/io/micronaut/data/micronaut-data-model/4.12.0/micronaut-data-model-4.12.0.jar!/META-INF/native-image/io.micronaut.data/data-model/native-image.properties' does not match the recommended 'META-INF/native-image/io.micronaut.data/micronaut-data-model/native-image.properties' layout.
+[WARNING] Properties file at 'jar:file:///home/praktikant/.m2/repository/io/micronaut/data/micronaut-data-tx-jdbc/4.12.0/micronaut-data-tx-jdbc-4.12.0.jar!/META-INF/native-image/io.micronaut.data/data-tx/native-image.properties' does not match the recommended 'META-INF/native-image/io.micronaut.data/micronaut-data-tx-jdbc/native-image.properties' layout.
+[INFO] [graalvm reachability metadata repository for org.hibernate.orm:hibernate-core:6.6.9.Final]: Configuration directory not found. Trying latest version.
+[INFO] [graalvm reachability metadata repository for org.hibernate.orm:hibernate-core:6.6.9.Final]: Configuration directory is org.hibernate.orm/hibernate-core/6.6.0.Final
+[INFO] [graalvm reachability metadata repository for org.jboss.logging:jboss-logging:3.5.0.Final]: Configuration directory is org.jboss.logging/jboss-logging/3.5.0.Final
+[INFO] [graalvm reachability metadata repository for org.glassfish.jaxb:jaxb-runtime:4.0.2]: Configuration directory not found. Trying latest version.
+[INFO] [graalvm reachability metadata repository for org.glassfish.jaxb:jaxb-runtime:4.0.2]: Configuration directory is org.glassfish.jaxb/jaxb-runtime/3.0.2
+[INFO] [graalvm reachability metadata repository for org.postgresql:postgresql:42.7.5]: Configuration directory not found. Trying latest version.
+[INFO] [graalvm reachability metadata repository for org.postgresql:postgresql:42.7.5]: Configuration directory is org.postgresql/postgresql/42.7.3
+[WARNING] Properties file at 'jar:file:///home/praktikant/.m2/repository/io/micronaut/micronaut-aop/4.8.11/micronaut-aop-4.8.11.jar!/META-INF/native-image/io/micronaut/micronaut-aop/native-image.properties' does not match the recommended 'META-INF/native-image/io.micronaut/micronaut-aop/native-image.properties' layout.
+[INFO] [graalvm reachability metadata repository for com.zaxxer:HikariCP:6.2.1]: Configuration directory not found. Trying latest version.
+[INFO] [graalvm reachability metadata repository for com.zaxxer:HikariCP:6.2.1]: Configuration directory is com.zaxxer/HikariCP/5.0.1
+[INFO] [graalvm reachability metadata repository for commons-logging:commons-logging:1.1.3]: Configuration directory not found. Trying latest version.
+[INFO] [graalvm reachability metadata repository for commons-logging:commons-logging:1.1.3]: Configuration directory is commons-logging/commons-logging/1.2
+[INFO] [graalvm reachability metadata repository for org.apache.httpcomponents:httpclient:4.5.13]: Configuration directory not found. Trying latest version.
+[INFO] [graalvm reachability metadata repository for org.apache.httpcomponents:httpclient:4.5.13]: Configuration directory is org.apache.httpcomponents/httpclient/4.5.14
+[INFO] [graalvm reachability metadata repository for com.fasterxml.jackson.core:jackson-databind:2.18.2]: Configuration directory not found. Trying latest version.
+[INFO] [graalvm reachability metadata repository for com.fasterxml.jackson.core:jackson-databind:2.18.2]: Configuration directory is com.fasterxml.jackson.core/jackson-databind/2.15.2
+[INFO] [graalvm reachability metadata repository for io.netty:netty-codec-http2:4.1.118.Final]: Configuration directory not found. Trying latest version.
+[INFO] [graalvm reachability metadata repository for io.netty:netty-codec-http2:4.1.118.Final]: Configuration directory is io.netty/netty-codec-http2/4.1.80.Final
+[INFO] [graalvm reachability metadata repository for io.netty:netty-transport:4.1.118.Final]: Configuration directory not found. Trying latest version.
+[INFO] [graalvm reachability metadata repository for io.netty:netty-transport:4.1.118.Final]: Configuration directory is io.netty/netty-transport/4.1.115.Final
+[INFO] [graalvm reachability metadata repository for io.netty:netty-common:4.1.118.Final]: Configuration directory not found. Trying latest version.
+[INFO] [graalvm reachability metadata repository for io.netty:netty-common:4.1.118.Final]: Configuration directory is io.netty/netty-common/4.1.115.Final
+[INFO] [graalvm reachability metadata repository for io.netty:netty-buffer:4.1.118.Final]: Configuration directory not found. Trying latest version.
+[INFO] [graalvm reachability metadata repository for io.netty:netty-buffer:4.1.118.Final]: Configuration directory is io.netty/netty-buffer/4.1.80.Final
+[INFO] [graalvm reachability metadata repository for io.netty:netty-handler:4.1.118.Final]: Configuration directory not found. Trying latest version.
+[INFO] [graalvm reachability metadata repository for io.netty:netty-handler:4.1.118.Final]: Configuration directory is io.netty/netty-handler/4.1.80.Final
+[INFO] [graalvm reachability metadata repository for io.netty:netty-codec-http:4.1.118.Final]: Configuration directory not found. Trying latest version.
+[INFO] [graalvm reachability metadata repository for io.netty:netty-codec-http:4.1.118.Final]: Configuration directory is io.netty/netty-codec-http/4.1.80.Final
+[INFO] [graalvm reachability metadata repository for org.flywaydb:flyway-core:10.22.0]: Configuration directory not found. Trying latest version.
+[INFO] [graalvm reachability metadata repository for org.flywaydb:flyway-core:10.22.0]: Configuration directory is org.flywaydb/flyway-core/10.20.1
+[INFO] [graalvm reachability metadata repository for org.flywaydb:flyway-database-postgresql:10.22.0]: Configuration directory not found. Trying latest version.
+[INFO] [graalvm reachability metadata repository for org.flywaydb:flyway-database-postgresql:10.22.0]: Configuration directory is org.flywaydb/flyway-database-postgresql/10.10.0
+[INFO] Args file written to: target/native-image-13793554877084156181.args
+[INFO] 
+[INFO] --- mn:4.8.2:docker-native (default-docker-native) @ tierheim-backend ---
+[INFO] GraalVM native image build args: [--no-fallback, -o, /home/praktikant/Dokumente/workspace/TIERHEIM/tierheim-backend/target/tierheim-backend, -H:ConfigurationFileDirectories=/home/app/graalvm-reachability-metadata/860f23163747528a838027aa1f0d9cf8349dc78e/org.postgresql/postgresql/42.7.3,/home/app/graalvm-reachability-metadata/860f23163747528a838027aa1f0d9cf8349dc78e/io.netty/netty-transport/4.1.115.Final,/home/app/graalvm-reachability-metadata/860f23163747528a838027aa1f0d9cf8349dc78e/io.netty/netty-handler/4.1.80.Final,/home/app/graalvm-reachability-metadata/860f23163747528a838027aa1f0d9cf8349dc78e/io.netty/netty-common/4.1.115.Final,/home/app/graalvm-reachability-metadata/860f23163747528a838027aa1f0d9cf8349dc78e/io.netty/netty-codec-http/4.1.80.Final,/home/app/graalvm-reachability-metadata/860f23163747528a838027aa1f0d9cf8349dc78e/com.zaxxer/HikariCP/5.0.1,/home/app/graalvm-reachability-metadata/860f23163747528a838027aa1f0d9cf8349dc78e/commons-logging/commons-logging/1.2,/home/app/graalvm-reachability-metadata/860f23163747528a838027aa1f0d9cf8349dc78e/org.hibernate.orm/hibernate-core/6.6.0.Final,/home/app/graalvm-reachability-metadata/860f23163747528a838027aa1f0d9cf8349dc78e/io.netty/netty-buffer/4.1.80.Final,/home/app/graalvm-reachability-metadata/860f23163747528a838027aa1f0d9cf8349dc78e/org.jboss.logging/jboss-logging/3.5.0.Final,/home/app/graalvm-reachability-metadata/860f23163747528a838027aa1f0d9cf8349dc78e/org.glassfish.jaxb/jaxb-runtime/3.0.2,/home/app/graalvm-reachability-metadata/860f23163747528a838027aa1f0d9cf8349dc78e/com.fasterxml.jackson.core/jackson-databind/2.15.2,/home/app/graalvm-reachability-metadata/860f23163747528a838027aa1f0d9cf8349dc78e/ch.qos.logback/logback-classic/1.4.9,/home/app/graalvm-reachability-metadata/860f23163747528a838027aa1f0d9cf8349dc78e/org.apache.httpcomponents/httpclient/4.5.14,/home/app/graalvm-reachability-metadata/860f23163747528a838027aa1f0d9cf8349dc78e/org.flywaydb/flyway-core/10.20.1,/home/app/graalvm-reachability-metadata/860f23163747528a838027aa1f0d9cf8349dc78e/io.netty/netty-codec-http2/4.1.80.Final,/home/app/graalvm-reachability-metadata/860f23163747528a838027aa1f0d9cf8349dc78e/org.flywaydb/flyway-database-postgresql/10.10.0, -march=x86-64-v2, -H:+AddAllCharsets, --exclude-config, \Q/home/app/libs/netty-codec-http2-4.1.118.Final.jar\E, ^/META-INF/native-image/, --exclude-config, \Q/home/app/libs/netty-transport-4.1.118.Final.jar\E, ^/META-INF/native-image/, --exclude-config, \Q/home/app/libs/netty-common-4.1.118.Final.jar\E, ^/META-INF/native-image/, --exclude-config, \Q/home/app/libs/netty-buffer-4.1.118.Final.jar\E, ^/META-INF/native-image/, --exclude-config, \Q/home/app/libs/netty-handler-4.1.118.Final.jar\E, ^/META-INF/native-image/, --exclude-config, \Q/home/app/libs/netty-codec-http-4.1.118.Final.jar\E, ^/META-INF/native-image/, -H:ConfigurationFileDirectories=/home/app/generateTestResourceConfig,/home/app/generateResourceConfig]
+[INFO] Using GRAALVM_DOWNLOAD_URL: https://gds.oracle.com/download/graal/21/latest-gftc/graalvm-jdk-21_linux-x64_bin.tar.gz
+[INFO] Using CLASS_NAME: io.micronaut.function.aws.runtime.MicronautLambdaRuntime
+[INFO] Step 1/23 : FROM public.ecr.aws/amazonlinux/amazonlinux:2023-minimal AS graalvm
+[INFO] 
+[INFO]  ---> 1c1d5848327c
+[INFO] Step 2/23 : ENV LANG=en_US.UTF-8
+[INFO] 
+[INFO]  ---> Using cache
+[INFO]  ---> 912f8ae14322
+[INFO] Step 3/23 : RUN dnf update -y && dnf install -y gcc glibc-devel zlib-devel libstdc++-static tar && dnf clean all && rm -rf /var/cache/dnf
+[INFO] 
+[INFO]  ---> Using cache
+[INFO]  ---> ec61aa6d39d9
+[INFO] Step 4/23 : ARG GRAALVM_DOWNLOAD_URL
+[INFO] 
+[INFO]  ---> Using cache
+[INFO]  ---> 87d3c2408ec5
+[INFO] Step 5/23 : RUN curl -4 -L ${GRAALVM_DOWNLOAD_URL} -o /tmp/graalvm.tar.gz     && mkdir -p /usr/lib/graalvm     && tar -zxf /tmp/graalvm.tar.gz -C /usr/lib/graalvm --strip-components 1     && rm -rf /tmp/*
+[INFO] 
+[INFO]  ---> Using cache
+[INFO]  ---> 77992a826d9c
+[INFO] Step 6/23 : ENV PATH="/usr/lib/graalvm/bin:${PATH}"
+[INFO] 
+[INFO]  ---> Using cache
+[INFO]  ---> 9f0608aaf35e
+[INFO] Step 7/23 : WORKDIR /home/app
+[INFO] 
+[INFO]  ---> Using cache
+[INFO]  ---> caac25c70efb
+[INFO] Step 8/23 : COPY classes /home/app/classes
+[INFO] 
+[INFO]  ---> Using cache
+[INFO]  ---> 32a0dacf7598
+[INFO] Step 9/23 : COPY dependency/* /home/app/libs/
+[INFO] 
+[INFO]  ---> Using cache
+[INFO]  ---> be9c31882e62
+[INFO] Step 10/23 : COPY graalvm-reachability-metadat[a] /home/app/graalvm-reachability-metadata
+[INFO] 
+[INFO]  ---> Using cache
+[INFO]  ---> a9e841adacba
+[INFO] Step 11/23 : COPY nativ[e]/generated /home/app/
+[INFO] 
+[INFO]  ---> Using cache
+[INFO]  ---> d48f86f3ccd6
+[INFO] Step 12/23 : COPY *.args /home/app/graalvm-native-image.args
+[INFO] 
+[INFO]  ---> a37efdb38cdf
+[INFO] Step 13/23 : ARG CLASS_NAME
+[INFO] 
+[INFO]  ---> Running in 61e96b03d3b2
+[INFO]  ---> Removed intermediate container 61e96b03d3b2
+[INFO]  ---> f66ab5b77e6f
+[INFO] Step 14/23 : RUN native-image @/home/app/graalvm-native-image.args -H:Class=${CLASS_NAME} -H:Name=application -cp "/home/app/libs/*:/home/app/classes/"
+[INFO] 
+[INFO]  ---> Running in 1b13e16b9ae3
+[INFO] Warning: Using a deprecated option --allow-incomplete-classpath from 'META-INF/native-image/software.amazon.awssdk/netty-nio-client/native-image.properties' in 'file:///home/app/libs/netty-nio-client-2.31.6.jar'. Allowing an incomplete classpath is now the default. Use --link-at-build-time to report linking errors at image build time for a class or package.
+[INFO] Warning: The option '-H:Name=application' is experimental and must be enabled via '-H:+UnlockExperimentalVMOptions' in the future.
+Warning: Please re-evaluate whether any experimental option is required, and either remove or unlock it. The build output lists all active experimental options, including where they come from and possible alternatives. If you think an experimental option should be considered as stable, please file an issue.
+[INFO] ========================================================================================================================
+[INFO] GraalVM Native Image: Generating 'application' (executable)...
+========================================================================================================================
+For detailed information and explanations on the build output, visit:
+[INFO] 
+https://github.com/oracle/graal/blob/master/docs/reference-manual/native-image/BuildOutput.md
+------------------------------------------------------------------------------------------------------------------------
+[INFO] [1/8] Initializing...                                                                                    (9.0s @ 0.24GB)
+[INFO]  Java version: 21.0.8+12-LTS, vendor version: Oracle GraalVM 21.0.8+12.1
+[INFO] 
+[INFO]  Graal compiler: optimization level: 2, target machine: x86-64-v2
+[INFO] , PGO: ML-inferred
+[INFO]  C compiler: gcc (amazon, x86_64, 11.5.0)
+[INFO] 
+[INFO]  Garbage collector
+[INFO] : Serial GC
+[INFO]  (max heap size: 
+[INFO] 80% of RAM)
+[INFO] 
+[INFO]  4 
+[INFO] user-specific feature(s)
+[INFO] :
+[INFO] 
+[INFO]  - com.oracle.svm.thirdparty.gson.GsonFeature
+ - io.micronaut.core.io.service.ServiceLoaderFeature
+ - io.micronaut.flyway.StaticResourceFeature
+ - org.eclipse.angus.activation.nativeimage.AngusActivationFeature
+[INFO] ------------------------------------------------------------------------------------------------------------------------
+ 1 
+[INFO] experimental option(s) unlocked:
+[INFO]  - '-H:Name' (alternative API option(s): -o application; origin(s): command line)
+[INFO] ------------------------------------------------------------------------------------------------------------------------
+Build resources:
+[INFO]  - 7.70GB of memory (24.8% of 31.05GB system memory, determined at start)
+[INFO]  - 16 thread(s) (100.0% of 16 available processor(s), determined at start)
+[INFO] [2/8] Performing analysis...  [******]                                                                 (109.9s @ 3.08GB)
+[INFO]    39,221 
+[INFO] reachable types
+[INFO]   
+[INFO]  (92.1% of   42,595 total)
+[INFO]    58,338 reachable fields  (62.4% of   93,423 total)
+[INFO]   204,653 reachable methods (62.5% of  327,697 total)
+[INFO]    12,861 types, 1,273 fields, and 10,027 methods registered for reflection
+[INFO]        85 types,    87 fields, and    66 methods registered for JNI access
+[INFO] 
+[INFO]         4 native libraries: dl, pthread, rt, z
+[INFO] [3/8] Building universe...                                                                              (18.9s @ 4.33GB)
+[INFO] [4/8] Parsing methods...      [******]                                                                  (32.1s @ 3.53GB)
+[INFO] [5/8] Inlining methods...     
+[INFO] [***
+[INFO] ]
+[INFO]                                                                       (3.9s @ 3.98GB)
+[INFO] 
+[INFO] [6/8] Compiling methods...    [*************]                                                          (176.8s @ 4.98GB)
+[INFO] [7/8] Laying out methods...   [****]                                                                    (18.2s @ 5.51GB)
+[INFO] [8/8] Creating image...       [****]                                                                    (19.6s @ 4.36GB)
+[INFO]  101.96MB (44.54%) for code area:   121,754 compilation units
+[INFO]  113.92MB (49.76%) for 
+[INFO] image heap
+[INFO] :  889,040 objects and 8,121 resources
+[INFO]   13.05MB ( 5.70%) for 
+[INFO] other data
+[INFO]  228.94MB in total
+[INFO] ------------------------------------------------------------------------------------------------------------------------
+[INFO] Top 10 origins of code area:                                Top 10 object types in image heap:
+[INFO]   17.27MB hibernate-core-6.6.9.Final.jar                      33.06MB byte[] for embedded resources
+[INFO]   17.25MB java.base                                           30.59MB byte[] for code metadata
+   8.16MB regions-2.31.6.jar                                  13.76MB byte[] for java.lang.String
+[INFO]    7.56MB svm.jar (Native Image)                               8.75MB java.lang.Class
+[INFO]    4.71MB java.desktop                                      
+[INFO]    5.88MB java.lang.String
+[INFO]    4.40MB java.xml
+[INFO]                                           
+[INFO]    4.40MB char[]
+[INFO]    3.12MB byte-buddy-1.17.0.jar                             
+[INFO]    2.40MB byte[] for reflection metadata
+[INFO] 
+[INFO]    2.30MB jackson-databind-2.18.2.jar                          1.80MB com.oracle.svm.core.hub.DynamicHubCompanion
+[INFO]    1.89MB postgresql-42.7.5.jar                             
+[INFO]    1.25MB java.lang.Object[]
+[INFO]    1.51MB micronaut-inject-4.8.11.jar                          1.11MB byte[] for general heap data
+[INFO] 
+[INFO]   32.94MB for 170 more packages
+[INFO]                              
+[INFO]   10.94MB for 7148 more object types
+[INFO] 
+[INFO]                               Use '-H:+BuildReport' to create a report with more details.
+[INFO] 
+[INFO] ------------------------------------------------------------------------------------------------------------------------
+[INFO] 
+[INFO] Security report:
+[INFO]  - Binary
+[INFO]  includes 
+[INFO] Java deserialization.
+[INFO] 
+[INFO]  - Use '--enable-sbom' to 
+[INFO] embed a Software Bill of Materials (SBOM)
+[INFO]  in the binary.
+[INFO] ------------------------------------------------------------------------------------------------------------------------
+Recommendations:
+ G1GC: Use the G1 GC ('--gc=G1') for improved latency and throughput.
+ PGO:  Use Profile-Guided Optimizations ('--pgo') for improved throughput.
+ INIT: Adopt '--strict-image-heap' to prepare for the next GraalVM release.
+[INFO]  AWT:  
+[INFO] Use the tracing agent to collect metadata for AWT.
+[INFO]  
+[INFO] HEAP:
+[INFO]  Set max heap for improved and more predictable memory usage.
+[INFO] 
+[INFO] ------------------------------------------------------------------------------------------------------------------------
+[INFO]                       47.8s (12.2% of total time) in 271 GCs | Peak RSS: 8.83GB | CPU load: 12.02
+[INFO] ------------------------------------------------------------------------------------------------------------------------
+Produced artifacts:
+[INFO]  /home/app/application (executable)
+ /home/app/libawt.so (jdk_library)
+ 
+[INFO] /home/app/libawt_headless.so (jdk_library)
+ /home/app/libawt_xawt.so (
+[INFO] jdk_library)
+ /home/app/libfontmanager.so (jdk_library)
+[INFO]  /home/app/libjava.so (jdk_library_shim)
+ 
+[INFO] /home/app/libjavajpeg.so (jdk_library)
+[INFO]  
+[INFO] /home/app/libjvm.so (jdk_library_shim)
+ 
+[INFO] /home/app/liblcms.so (jdk_library)
+========================================================================================================================
+[INFO] Finished generating 'application' in 6m 30s.
+[INFO] 
+[INFO]  ---> Removed intermediate container 1b13e16b9ae3
+[INFO]  ---> 81ad784a90a3
+[INFO] Step 15/23 : FROM public.ecr.aws/amazonlinux/amazonlinux:2023-minimal
+[INFO] 
+[INFO]  ---> 1c1d5848327c
+[INFO] Step 16/23 : WORKDIR /function
+[INFO] 
+[INFO]  ---> Using cache
+[INFO]  ---> cdf19d51e5d0
+[INFO] Step 17/23 : RUN dnf update -y && dnf install -y zip && dnf clean all
+[INFO] 
+[INFO]  ---> Using cache
+[INFO]  ---> 634832e0c253
+[INFO] Step 18/23 : COPY --from=graalvm /home/app/application /function/func
+[INFO] 
+[INFO]  ---> 231397ce9902
+[INFO] Step 19/23 : RUN echo "#!/bin/sh" >> bootstrap && echo "set -euo pipefail" >> bootstrap && echo "./func -XX:MaximumHeapSizePercent=80 -Dio.netty.allocator.numDirectArenas=0 -Dio.netty.noPreferDirect=true -Djava.library.path=$(pwd)" >> bootstrap
+[INFO] 
+[INFO]  ---> Running in 1ff4e5e25a36
+[INFO]  ---> Removed intermediate container 1ff4e5e25a36
+[INFO]  ---> a4c8e618c53f
+[INFO] Step 20/23 : RUN chmod 777 bootstrap
+[INFO] 
+[INFO]  ---> Running in 4f8fe2984743
+[INFO]  ---> Removed intermediate container 4f8fe2984743
+[INFO]  ---> d41e812d91d2
+[INFO] Step 21/23 : RUN chmod 777 func
+[INFO] 
+[INFO]  ---> Running in 769fe8316a17
+[INFO]  ---> Removed intermediate container 769fe8316a17
+[INFO]  ---> b5328be7ba6a
+[INFO] Step 22/23 : RUN zip -j function.zip bootstrap func
+[INFO] 
+[INFO]  ---> Running in fcb58eb5efd6
+[INFO]   adding: bootstrap
+[INFO]  (deflated 19%)
+  adding: func
+[INFO]  (deflated 65%)
+[INFO]  ---> Removed intermediate container fcb58eb5efd6
+[INFO]  ---> 2add54441f66
+[INFO] Step 23/23 : ENTRYPOINT ["/function/func"]
+[INFO] 
+[INFO]  ---> Running in 35d405e71828
+[INFO]  ---> Removed intermediate container 35d405e71828
+[INFO]  ---> cc790eea287e
+[INFO] Successfully built cc790eea287e
+[INFO] AWS Lambda Custom Runtime ZIP: /home/praktikant/Dokumente/workspace/TIERHEIM/tierheim-backend/target/function.zip
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  07:08 min
+[INFO] Finished at: 2025-11-25T11:21:52+01:00
+[INFO] ------------------------------------------------------------------------

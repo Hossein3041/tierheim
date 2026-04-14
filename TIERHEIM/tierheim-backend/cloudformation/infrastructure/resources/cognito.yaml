@@ -1,0 +1,42 @@
+CognitoCustomResourceRole:
+  Type: AWS::IAM::Role
+  Properties:
+    AssumeRolePolicyDocument:
+      Version: '2012-10-17'
+      Statement:
+        - Effect: Allow
+          Principal:
+            Service: lambda.amazonaws.com
+          Action: sts:AssumeRole
+    Policies:
+      - PolicyName: LambdaExecutionPolicy
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - logs:CreateLogGroup
+                - logs:CreateLogStream
+                - logs:PutLogEvents
+              Resource: arn:aws:logs:*:*:*
+            - Effect: Allow
+              Action:
+                - cognito-idp:*
+              Resource: '*'
+CognitoCustomResourceFunction:
+  Type: AWS::Lambda::Function
+  Properties:
+    Handler: index.handler
+    Runtime: python3.12
+    Role: !GetAtt CognitoCustomResourceRole.Arn
+    Timeout: 900
+    Code:
+      ZipFile: |
+        $IMPORT("create_cognito.py")$
+CognitoCustomResource:
+  Type: Custom::CognitoCustomResource
+  Properties:
+    ServiceToken: !GetAtt CognitoCustomResourceFunction.Arn
+    UserPoolName: !Sub "${Environment}-${ProjectName}-root"
+    TagName: !Sub "${Environment}-${ProjectName}-${AppName}"
+    AccountId: !Ref "AWS::AccountId"

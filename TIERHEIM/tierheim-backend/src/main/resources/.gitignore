@@ -1,0 +1,11 @@
+# Secrets / Config
+*.properties
+
+# Build Ordner
+target/
+
+# Node (falls React)
+node_modules/
+
+# Env Dateien
+.env

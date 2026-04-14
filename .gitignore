@@ -1,0 +1,9 @@
+# Secrets / Config
+*.properties
+.env
+
+# Build
+target/
+
+# Node
+node_modules/

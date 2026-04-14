@@ -1,0 +1,23 @@
+# App configuration-variables
+AppName: "backend"
+Environment: "unknown"
+ProjectName: "tierheim"
+ProfileName: "sideklick"
+
+# Domain configuration-variables
+DomainName: "duconhub.de"
+Route53Certificate: "arn:aws:acm:eu-central-1:160184391904:certificate/a15467a3-358f-465f-a3de-12ad438b950e"
+
+# Lambda configuration-variables
+LambdaArchitecture: "unknown"
+LambdaCodeArchive: "function.zip"
+LambdaCodePath: "../target/function.zip"
+LambdaCodeVersion: "unknown"
+LambdaCodeS3Bucket: "sideklick-application-bucket"
+LambdaDescription: "Test function for Lambda iac."
+LambdaHandler: "io.micronaut.function.aws.proxy.payload1.ApiGatewayProxyRequestEventFunction"
+LambdaMemorySize: "512"
+LambdaPackageType: "Zip"
+LambdaReservedConcurrentExecutions: "5"
+LambdaRuntime: "provided.al2023"
+LambdaTimeout: "120"

@@ -1,0 +1,1409 @@
+openapi: 3.0.3
+info:
+  title: Tierheim API
+  version: 1.0.1
+  description: Gibt eine Übersicht aller aktiven Tiere, gruppiert nach Tierart
+
+paths:
+  /pet/overview:
+    get:
+      summary: Übersicht aller aktiven Tiere (nach Species gruppiert)
+      description: Liefert alle aktiven Tiere gruppiert nach Tierart (z.B. Hunde, Katzen)
+      responses:
+        '200':
+          description: Erfolgreiche Antwort
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 621763452
+                      name:
+                        type: string
+                        example: Hedda
+                      breed:
+                        type: string
+                        example: Beagle
+                      image:
+                        type: string
+                        format: uri
+                        example: https://example.com/images/hedda.jpg
+                      chipNumber:
+                        type: string
+                        example: "156487946851523"
+                      locationUnit:
+                        type: string
+                        example: KH-R1
+                      specialNote:
+                        type: boolean
+                        example: true
+                      placementStatus:
+                        type: string
+                        enum: [Available, Reserved, Boarding, AdoptionScheduled]
+                        example: Reserved
+                      animalReasonType:
+                        type: string
+                        enum: [FOUND, BOARDING, SURRENDER, VET_OFFICE, CONFISCATION]
+                        example: BOARDING
+                      foundDate:
+                        type: string
+                        format: date
+                        example: 2025-02-17
+                      primaryBadge:
+                        type: string
+                        enum: [P, R]
+                        nullable: true
+                        example: R
+                      hasAttention:
+                        type: boolean
+                        example: true
+              example:
+                Hunde:
+                  - name: Hedda
+                    id: 2143557
+                    breed: Beagle
+                    image: url/to/picture
+                    chipNumber: "156487946851523"
+                    locationUnit: KH-R1
+                    specialNote: true
+                    placementStatus: reserved
+                    animalReasonType: HOLIDAY
+                  - name: Paul
+                    id: 2143558
+                    breed: Golden Retriever
+                    image: url/to/picture
+                    chipNumber: "156487946851524"
+                    locationUnit: KH-R2
+                    specialNote: true
+                    placementStatus: available
+                    animalReasonType: HOLIDAY
+                Katzen:
+                  - name: Mieze
+                    id: 2343524
+                    breed: Europäisch Kurzhaar
+                    image: url/to/picture
+                    chipNumber: "123456789012345"
+                    locationUnit: KH-K2
+                    specialNote: false
+                    placementStatus: available
+                    animalReasonType: HOLIDAY
+        '404':
+          description: Keine aktiven Tiere gefunden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Keine aktiven Tiere gefunden
+
+  /pet/{id}:
+    get:
+      summary: Tierdetails abrufen
+      description: Liefert die vollständigen Informationen zu einem einzelnen Tier anhand seiner ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Die ID des Tieres
+      responses:
+        '200':
+          description: Erfolgreiche Antwort mit Tierdetails
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 101
+                  name:
+                    type: string
+                    example: Lotte
+                  species:
+                    type: string
+                    example: Katze
+                  birthdate:
+                    type: string
+                    format: date
+                    example: 2018-07-01
+                  breed:
+                    type: string
+                    example: Russisch Blau
+                  color:
+                    type: string
+                    example: Grau
+                  sex:
+                    type: string
+                    example: Weiblich
+                  finderName:
+                    type: string
+                    example: Peter Petersen
+                  foundLocation:
+                    type: string
+                    example: Wohnung
+                  foundDate:
+                    type: string
+                    format: date
+                    example: 2025-05-21
+                  finderAddress:
+                    type: string
+                    example: Petersentraße 12, 27572 Bremerhaven
+                  finderPhone:
+                    type: string
+                    example: 0471 - 987123
+                  room:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      default:
+                        type: boolean
+                        example: true
+                      name:
+                        type: string
+                        example: Katzenraum 1
+                      section:
+                        type: string
+                        example: Katzenraum 1
+                      sectionShortName:
+                        type: string
+                        example: KR1
+                      location:
+                        type: string
+                        example: Katzenhaus
+                      locationShortName:
+                        type: string
+                        example: KATZE
+                  foods:
+                    type: array
+                    items:
+                      type: string
+                    example: ["Animonda", "Royal Canin"]
+                  medications:
+                    type: array
+                    items:
+                      type: string
+                    example: ["Panacur", "Metacam"]
+                  chipNumber:
+                    type: string
+                    example: "276098106123456"
+                  isRegistered:
+                    type: boolean
+                    example: false
+                  isNeutered:
+                    type: boolean
+                    example: true
+                  specialCharacteristics:
+                    type: string
+                    example: Nur mit Handschuhen anfassen und nicht hochheben!
+                  hasExtraInvoice:
+                    type: boolean
+                    example: true
+                  isArchived:
+                    type: boolean
+                    example: false
+        '404':
+          description: Tier mit dieser ID nicht gefunden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Tier nicht gefunden
+
+  /pet/create:
+    post:
+      summary: Neues Tier anlegen
+      description: Legt ein neues Tier in der Datenbank an. Dieser Endpunkt ist durch einen API-Key geschützt.
+      security:
+        - ApiKeyAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - species
+                - birthdate
+              properties:
+                name:
+                  type: string
+                  example: Lotte
+                species:
+                  type: string
+                  example: Katze
+                birthdate:
+                  type: string
+                  format: date
+                  example: 2018-07-01
+                breed:
+                  type: string
+                  example: Russisch Blau
+                color:
+                  type: string
+                  example: Grau
+                sex:
+                  type: string
+                  example: Weiblich
+                finderName:
+                  type: string
+                  example: Peter Petersen
+                foundLocation:
+                  type: string
+                  example: Wohnung
+                foundDate:
+                  type: string
+                  format: date
+                  example: 2025-05-21
+                finderAddress:
+                  type: string
+                  example: Petersentraße 12, 27572 Bremerhaven
+                finderPhone:
+                  type: string
+                  example: 0471 - 987123
+                room:
+                  type: string
+                  example: Raum 1
+                foods:
+                  type: array
+                  items:
+                    type: string
+                  example: ["Animonda", "Royal Canin"]
+                medications:
+                  type: array
+                  items:
+                    type: string
+                  example: ["Panacur", "Metacam"]
+                chipNumber:
+                  type: string
+                  example: "276098106123456"
+                isRegistered:
+                  type: boolean
+                  example: false
+                isNeutered:
+                  type: boolean
+                  example: true
+                specialCharacteristics:
+                  type: string
+                  example: Nur mit Handschuhen anfassen und nicht hochheben!
+                hasExtraInvoice:
+                  type: boolean
+                  example: true
+                isArchived:
+                  type: boolean
+                  example: false
+      responses:
+        '201':
+          description: Tier erfolgreich angelegt
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 102
+                  message:
+                    type: string
+                    example: Tier erfolgreich angelegt
+        '400':
+          description: Ungültige Eingabedaten
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Fehlende oder ungültige Felder
+        '401':
+          description: Ungültiger oder fehlender API-Key
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Nicht autorisiert
+
+  /pet/update/{id}:
+    put:
+      summary: Tierdaten aktualisieren
+      description: Aktualisiert die vollständigen Daten eines vorhandenen Tieres anhand seiner ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Die ID des zu aktualisierenden Tieres
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Lotte
+                species:
+                  type: string
+                  example: Katze
+                birthdate:
+                  type: string
+                  format: date
+                  example: 2018-07-01
+                breed:
+                  type: string
+                  example: Russisch Blau
+                color:
+                  type: string
+                  example: Grau
+                sex:
+                  type: string
+                  example: Weiblich
+                finderName:
+                  type: string
+                  example: Peter Petersen
+                foundLocation:
+                  type: string
+                  example: Wohnung
+                foundDate:
+                  type: string
+                  format: date
+                  example: 2025-05-21
+                finderAddress:
+                  type: string
+                  example: Petersentraße 12, 27572 Bremerhaven
+                finderPhone:
+                  type: string
+                  example: 0471 - 987123
+                room:
+                  type: string
+                  example: Raum 1
+                foods:
+                  type: array
+                  items:
+                    type: string
+                  example: ["Animonda", "Royal Canin"]
+                medications:
+                  type: array
+                  items:
+                    type: string
+                  example: ["Panacur", "Metacam"]
+                chipNumber:
+                  type: string
+                  example: "276098106123456"
+                isRegistered:
+                  type: boolean
+                  example: false
+                isNeutered:
+                  type: boolean
+                  example: true
+                specialCharacteristics:
+                  type: string
+                  example: Nur mit Handschuhen anfassen und nicht hochheben!
+                hasExtraInvoice:
+                  type: boolean
+                  example: true
+                isArchived:
+                  type: boolean
+                  example: false
+      responses:
+        '200':
+          description: Tier erfolgreich aktualisiert
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Tier erfolgreich aktualisiert
+        '400':
+          description: Ungültige Eingabedaten
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Ungültige Daten
+        '404':
+          description: Tier mit dieser ID nicht gefunden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Tier nicht gefunden
+
+  /pet/species:
+    get:
+      summary: Alle Tierarten (Species)
+      description: Gibt eine Liste aller definierten Tierarten zurück.
+      responses:
+        '200':
+          description: Liste von Species
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: Katze
+
+  /pet/breeds:
+    get:
+      summary: Alle Rassen (Breeds)
+      description: Gibt eine Liste aller bekannten Rassen zurück.
+      responses:
+        '200':
+          description: Liste von Rassen
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 3
+                    name:
+                      type: string
+                      example: Golden Retriever
+
+  /pet/colors:
+    get:
+      summary: Alle Farben (Colors)
+      description: Gibt eine Liste aller Fellfarben zurück.
+      responses:
+        '200':
+          description: Liste von Farben
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 5
+                    name:
+                      type: string
+                      example: Grau
+
+  /getUnits:
+    get:
+      summary: Alle Raeume (Units) abrufen
+      description: Liefert eine Liste aller vorhandenen Raeume (z. B. Zwinger, Boxen, Räume)
+      responses:
+        '200':
+          description: Erfolgreiche Antwort mit Liste aller Units
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 10
+                    isDefault:
+                      type: boolean
+                      example: true
+                    name:
+                      type: string
+                      example: Zwinger 1
+                    section:
+                      type: string
+                      example: Raum 1
+                    location:
+                      type: string
+                      example: Katzenhaus
+
+  /suggest/foods:
+    get:
+      summary: Futtervorschläge per Textfilter (Autosuggest)
+      description: Gibt eine Liste von Futtereinträgen mit ID und Name zurück, die zum Suchbegriff passen.
+      parameters:
+        - name: q
+          in: query
+          required: false
+          description: Teilbegriff für das Futter (z. B. 'ani')
+          schema:
+            type: string
+            minLength: 1
+      responses:
+        '200':
+          description: Liste von passenden Futterobjekten
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: Animonda
+              example:
+                - id: 1
+                  name: Animonda
+                - id: 2
+                  name: Animal Fit
+        '400':
+          description: Ungültiger Suchbegriff (z. B. zu kurz)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Ungültiger Suchbegriff
+        '500':
+          description: Interner Serverfehler
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unerwarteter Fehler beim Suchen nach Futtervorschlägen
+
+  /suggest/medications:
+    get:
+      summary: Medikamentenvorschläge per Textfilter (Autosuggest)
+      description: Gibt eine Liste von Medikamenten mit ID und Name zurück, die zum Suchbegriff passen.
+      parameters:
+        - name: q
+          in: query
+          required: false
+          description: Teilbegriff für das Medikament (z. B. 'pan')
+          schema:
+            type: string
+            minLength: 1
+      responses:
+        '200':
+          description: Liste von passenden Medikamentenobjekten
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 3
+                    name:
+                      type: string
+                      example: Panacur
+              example:
+                - id: 3
+                  name: Panacur
+                - id: 4
+                  name: Pantoprazol
+        '400':
+          description: Ungültiger Suchbegriff (z. B. zu kurz)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Ungültiger Suchbegriff
+        '500':
+          description: Interner Serverfehler
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unerwarteter Fehler beim Suchen nach Medikamentenvorschlägen
+  /locations:
+    get:
+      summary: Liste aller Standorte mit Bereichen und Tieren abrufen
+      description: Gibt eine Liste von Standorten inklusive ihrer Bereiche und Tiere zurück.
+      responses:
+        '200':
+          description: Liste der Standorte erfolgreich abgerufen
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  locations:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: Main Location
+                        shortName:
+                          type: string
+                          example: Main1
+                        currentPetCount:
+                          type: integer
+                          example: 12
+                        sections:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 101
+                              name:
+                                type: string
+                                example: Section A
+                              shortName:
+                                type: string
+                                example: Sect. A
+                              currentPetCount:
+                                type: integer
+                                example: 5
+                              maxPetCount:
+                                type: integer
+                                example: 10
+                              pets:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    petId:
+                                      type: integer
+                                      example: 1
+                                    imageIdRef:
+                                      type: string
+                                      example: img_001
+                                    name:
+                                      type: string
+                                      example: Bella
+              example:
+                locations:
+                  - id: 1
+                    name: Katzenhaus
+                    shortName: KATZ
+                    currentPetCount: 12
+                    sections:
+                      - id: 101
+                        name: Raum 1
+                        shortName: R1
+                        currentPetCount: 5
+                        maxPetCount: 10
+                        pets:
+                          - petId: 1
+                            imageIdRef: img_001
+                            name: Bella
+                          - petId: 2
+                            imageIdRef: img_002
+                            name: Max
+                      - id: 102
+                        name: Raum 2
+                        shortName: R2
+                        currentPetCount: 7
+                        maxPetCount: 8
+                        pets:
+                          - petId: 3
+                            imageIdRef: img_003
+                            name: Luna
+                          - petId: 4
+                            imageIdRef: img_004
+                            name: Charlie
+        '500':
+          description: Interner Serverfehler
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unerwarteter Fehler beim Abrufen der Standortdaten
+  /sections/{id}:
+    get:
+      summary: Details einer Section anhand der ID abrufen
+      description: Gibt eine Section mit Raum-Information und allen enthaltenen Tieren zurück.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID der Section
+          schema:
+            type: integer
+            example: 101
+      responses:
+        '200':
+          description: Section erfolgreich abgerufen
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 101
+                  section:
+                    type: string
+                    example: Section1
+                  short_section:
+                    type: string
+                    example: S1
+                  raum:
+                    type: string
+                    example: Section A
+                  pets:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        chipnr:
+                          type: string
+                          example: CH123456
+                        name:
+                          type: string
+                          example: Bella
+                        rasse:
+                          type: string
+                          example: Labrador
+                        imageIdRef:
+                          type: string
+                          example: img_001
+              example:
+                id: 101
+                section: Section A
+                short_section: S.A.
+                pets:
+                  - id: 1
+                    chipnr: CH123456
+                    name: Bella
+                    rasse: Labrador
+                    imageIdRef: img_001
+                  - id: 2
+                    chipnr: CH987654
+                    name: Max
+                    rasse: Beagle
+                    imageIdRef: img_002
+        '404':
+          description: Section nicht gefunden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Section mit ID 101 nicht gefunden
+        '500':
+          description: Interner Serverfehler
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unerwarteter Fehler beim Abrufen der Section
+  /appointments/overview:
+    get:
+      summary: Übersicht aller Termine nach Tierart und Kategorie
+      description: |
+        Liefert alle Termine, gruppiert nach Tierart und innerhalb dieser nach Kategorie (z. B. Behandlungen, Pflege, Allgemein).  
+        Über Query-Parameter kann ein bestimmter Tag (`date`) oder eine Liste von Tagen (`dateRange`) abgefragt werden.
+      parameters:
+        - name: dates
+          in: query
+          required: false
+          description: |
+            Liste von Tagen, für die Termine abgerufen werden sollen (Format: YYYY-MM-DD).  
+            Einzelnes Datum einfach als einzelnes Listenelement übergeben.
+          schema:
+            type: array
+            items:
+              type: string
+              format: date
+          examples:
+            singleDate:
+              summary: Einzelner Tag
+              value: [ "2025-10-22" ]
+            multipleDates:
+              summary: Mehrere nicht aufeinanderfolgende Tage
+              value: [ "2025-10-20", "2025-10-21", "2025-10-23", "2025-10-26" ]
+      responses:
+        '200':
+          description: Erfolgreiche Antwort mit Terminübersicht
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+                  additionalProperties:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        appointmentType:
+                          type: string
+                        appointmentDate:
+                          type: string
+                          format: date
+                        appointmentTime:
+                          type: string
+                        appointmentDescription:
+                          type: string
+                        checked:
+                          type: boolean
+                          description: Gibt an, ob der Termin als erledigt markiert wurde
+                        referencedPet:
+                          type: object
+                          nullable: true
+                          properties:
+                            petId:
+                              type: integer
+                            petName:
+                              type: string
+                            petBreed:
+                              type: string
+                            petImage:
+                              type: string
+                              format: uri
+              example:
+                Hunde:
+                  Behandlungen:
+                    - id: 1001
+                      appointmentType: Wurzelbehandlung
+                      appointmentDate: 2025-10-22
+                      appointmentTime: "11:45"
+                      appointmentDescription: Zahnbehandlung – kurzer Kommentar
+                      checked: false
+                      referencedPet:
+                        petId: 3011
+                        petName: Bootsmann
+                        petBreed: Mischling
+                        petImage: https://example.com/images/bootsmann.jpg
+                    - id: 1002
+                      appointmentType: Medikamentengabe
+                      appointmentDate: 2025-10-22
+                      appointmentTime: "15:15"
+                      appointmentDescription: Regelmäßige Medikamenteneinnahme
+                      checked: false
+                      referencedPet:
+                        petId: 3012
+                        petName: Brownie
+                        petBreed: Labrador
+                        petImage: https://example.com/images/brownie.jpg
+                  Besuche:
+                    - id: 1003
+                      appointmentType: Kennenlernen
+                      appointmentDate: 2025-10-22
+                      appointmentTime: "13:00"
+                      appointmentDescription: Erstes Treffen mit Paul – kurzer Kommentar
+                      checked: false
+                      referencedPet:
+                        petId: 3013
+                        petName: Paul
+                        petBreed: Schäferhund
+                        petImage: https://example.com/images/paul.jpg
+                    - id: 1004
+                      appointmentType: Spaziergang
+                      appointmentDate: 2025-10-22
+                      appointmentTime: "16:00"
+                      appointmentDescription: Spaziergang mit Sherlock im Park
+                      checked: false
+                      referencedPet:
+                        petId: 3014
+                        petName: Sherlock
+                        petBreed: Beagle
+                        petImage: https://example.com/images/sherlock.jpg
+                  Pflege:
+                    - id: 1005
+                      appointmentType: Reinigung
+                      appointmentDate: 2025-10-22
+                      appointmentTime: "09:00"
+                      appointmentDescription: Reinigungspflege bei Fidi
+                      checked: false
+                      referencedPet:
+                        petId: 3015
+                        petName: Fidi
+                        petBreed: Golden Retriever
+                        petImage: https://example.com/images/fidi.jpg
+                    - id: 1006
+                      appointmentType: Fellpflege
+                      appointmentDate: 2025-10-22
+                      appointmentTime: "09:45"
+                      appointmentDescription: Fellpflege bei Nico
+                      checked: false
+                      referencedPet:
+                        petId: 3016
+                        petName: Nico
+                        petBreed: Border Collie
+                        petImage: https://example.com/images/nico.jpg
+                  Allgemein: [ ]
+
+                Katzen:
+                  Behandlungen:
+                    - id: 2001
+                      appointmentType: Routineuntersuchung
+                      appointmentDate: 2025-10-22
+                      appointmentTime: "10:30"
+                      appointmentDescription: Allgemeine Kontrolle bei Minka
+                      checked: false
+                      referencedPet:
+                        petId: 4011
+                        petName: Minka
+                        petBreed: Hauskatze
+                        petImage: https://example.com/images/minka.jpg
+                    - id: 2002
+                      appointmentType: Impfung
+                      appointmentDate: 2025-10-22
+                      appointmentTime: "14:00"
+                      appointmentDescription: Impfung gegen Katzenschnupfen
+                      checked: false
+                      referencedPet:
+                        petId: 4013
+                        petName: Luna
+                        petBreed: Siamkatze
+                        petImage: https://example.com/images/luna.jpg
+                  Pflege:
+                    - id: 2003
+                      appointmentType: Fellpflege
+                      appointmentDate: 2025-10-22
+                      appointmentTime: "12:15"
+                      appointmentDescription: Kämmen und Krallenpflege
+                      checked: false
+                      referencedPet:
+                        petId: 4012
+                        petName: Simba
+                        petBreed: Maine Coon
+                        petImage: https://example.com/images/simba.jpg
+                  Besuche: [ ]
+                  Allgemein: [ ]
+
+                Vögel:
+                  Behandlungen:
+                    - id: 3001
+                      appointmentType: Gesundheitscheck
+                      appointmentDate: 2025-10-22
+                      appointmentTime: "10:15"
+                      appointmentDescription: Routineuntersuchung für Kiwi
+                      checked: false
+                      referencedPet:
+                        petId: 5012
+                        petName: Kiwi
+                        petBreed: Kanarienvogel
+                        petImage: https://example.com/images/kiwi.jpg
+                  Pflege:
+                    - id: 3002
+                      appointmentType: Krallenpflege
+                      appointmentDate: 2025-10-22
+                      appointmentTime: "09:30"
+                      appointmentDescription: Kürzen der Krallen bei Coco
+                      checked: false
+                      referencedPet:
+                        petId: 5011
+                        petName: Coco
+                        petBreed: Wellensittich
+                        petImage: https://example.com/images/coco.jpg
+                  Besuche: [ ]
+                  Allgemein: [ ]             
+  /appointments/types:
+    get:
+      summary: Liste aller verfügbaren Terminarten
+      description: |
+        Liefert eine einfache Liste aller verfügbaren Terminarten.  
+        Diese können z. B. für Dropdowns, Filter oder Terminerstellungen verwendet werden.
+      responses:
+        '200':
+          description: Erfolgreiche Antwort mit allen Terminarten
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      description: Eindeutige ID der Terminart
+                    name:
+                      type: string
+                      description: Anzeigename der Terminart
+              examples:
+                default:
+                  summary: Beispiel – Liste der Terminarten
+                  value:
+                    - id: 1
+                      name: Wurzelbehandlung
+                    - id: 2
+                      name: Routineuntersuchung
+                    - id: 3
+                      name: Impfung
+                    - id: 4
+                      name: Fellpflege
+                    - id: 5
+                      name: Krallenpflege
+                    - id: 6
+                      name: Kennenlernen
+                    - id: 7
+                      name: Spaziergang
+
+  /appointments/categories:
+    get:
+      summary: Liste aller verfügbaren Terminkategorien
+      description: |
+        Liefert eine einfache Liste aller verfügbaren Terminkategorien.  
+        Diese können z. B. für Dropdowns, Filter oder Terminerstellungen verwendet werden.
+      responses:
+        '200':
+          description: Erfolgreiche Antwort mit allen Terminkategorien
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      description: Eindeutige ID der Terminkategorie
+                    name:
+                      type: string
+                      description: Anzeigename der Terminkategorie
+              examples:
+                default:
+                  summary: Beispiel – Liste der Terminkategorien
+                  value:
+                    - id: 1
+                      name: Behandlungen
+                    - id: 2
+                      name: Pflege
+                    - id: 3
+                      name: Besuche
+                    - id: 4
+                      name: Allgemein
+  /appointments/{id}/check:
+    patch:
+      summary: Termin als erledigt oder unerledigt markieren
+      description: |
+        Ändert den `checked`-Status eines Termins.  
+        Wenn kein Body übergeben wird, wird der aktuelle Status umgeschaltet (Toggle).  
+        Wenn im Body ein Wert angegeben ist, wird dieser explizit gesetzt.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID des Termins, dessen Zustand geändert werden soll
+          schema:
+            type: integer
+            example: 1012
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                checked:
+                  type: boolean
+                  description: Neuer Zustand des Termins (`true` = erledigt, `false` = offen)
+            examples:
+              explicitTrue:
+                summary: Termin explizit als erledigt markieren
+                value:
+                  checked: true
+              explicitFalse:
+                summary: Termin explizit als unerledigt markieren
+                value:
+                  checked: false
+      responses:
+        '200':
+          description: Erfolgreiche Änderung des Zustands
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1012
+                  checked:
+                    type: boolean
+                    example: true
+              examples:
+                toggled:
+                  summary: Beispiel – Zustand wurde getoggelt
+                  value:
+                    id: 1012
+                    checked: true
+        '404':
+          description: Termin mit der angegebenen ID wurde nicht gefunden
+        '400':
+          description: Ungültige Anfrage (z. B. fehlerhafte ID oder ungültiger Body)
+  /appointments:
+    post:
+      summary: Neuen Termin erstellen
+      description: |
+        Erstellt einen neuen Termin mit den angegebenen Daten.  
+        Der `checked`-Status ist bei Erstellung standardmäßig `false`.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - appointmentType
+                - appointmentDate
+                - appointmentTime
+              properties:
+                appointmentType:
+                  type: string
+                appointmentDate:
+                  type: string
+                  format: date
+                appointmentTime:
+                  type: string
+                appointmentDescription:
+                  type: string
+                referencedPet:
+                  type: object
+                  nullable: true
+                  properties:
+                    petId:
+                      type: integer
+                    petName:
+                      type: string
+                    petBreed:
+                      type: string
+                    petImage:
+                      type: string
+                      format: uri
+            example:
+              appointmentType: Routineuntersuchung
+              appointmentDate: 2025-10-25
+              appointmentTime: "10:00"
+              appointmentDescription: Allgemeine Kontrolle bei Minka
+              referencedPet:
+                petId: 4011
+                petName: Minka
+                petBreed: Hauskatze
+                petImage: https://example.com/images/minka.jpg
+      responses:
+        '201':
+          description: Termin erfolgreich erstellt
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  appointmentType:
+                    type: string
+                  appointmentDate:
+                    type: string
+                    format: date
+                  appointmentTime:
+                    type: string
+                  appointmentDescription:
+                    type: string
+                  checked:
+                    type: boolean
+                  referencedPet:
+                    type: object
+                    nullable: true
+                    properties:
+                      petId:
+                        type: integer
+                      petName:
+                        type: string
+                      petBreed:
+                        type: string
+                      petImage:
+                        type: string
+                        format: uri
+              example:
+                id: 1101
+                appointmentType: Routineuntersuchung
+                appointmentDate: 2025-10-25
+                appointmentTime: "10:00"
+                appointmentDescription: Allgemeine Kontrolle bei Minka
+                checked: false
+                referencedPet:
+                  petId: 4011
+                  petName: Minka
+                  petBreed: Hauskatze
+                  petImage: https://example.com/images/minka.jpg
+
+  /appointments/{id}:
+    put:
+      summary: Bestehenden Termin bearbeiten
+      description: |
+        Aktualisiert die Daten eines bestehenden Termins.  
+        Felder, die nicht angegeben werden, bleiben unverändert.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID des zu bearbeitenden Termins
+          schema:
+            type: integer
+            example: 1101
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                appointmentType:
+                  type: string
+                appointmentDate:
+                  type: string
+                  format: date
+                appointmentTime:
+                  type: string
+                appointmentDescription:
+                  type: string
+                checked:
+                  type: boolean
+                referencedPet:
+                  type: object
+                  nullable: true
+                  properties:
+                    petId:
+                      type: integer
+                    petName:
+                      type: string
+                    petBreed:
+                      type: string
+                      petImage:
+                        type: string
+                        format: uri
+            example:
+              appointmentType: Impfung
+              appointmentDate: 2025-10-26
+              appointmentTime: "11:30"
+              appointmentDescription: Auffrischungsimpfung
+              checked: false
+      responses:
+        '200':
+          description: Termin erfolgreich aktualisiert
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  appointmentType:
+                    type: string
+                  appointmentDate:
+                    type: string
+                    format: date
+                  appointmentTime:
+                    type: string
+                  appointmentDescription:
+                    type: string
+                  checked:
+                    type: boolean
+                  referencedPet:
+                    type: object
+                    nullable: true
+                    properties:
+                      petId:
+                        type: integer
+                      petName:
+                        type: string
+                      petBreed:
+                        type: string
+                      petImage:
+                        type: string
+                        format: uri
+              example:
+                id: 1101
+                appointmentType: Impfung
+                appointmentDate: 2025-10-26
+                appointmentTime: "11:30"
+                appointmentDescription: Auffrischungsimpfung
+                checked: false
+                referencedPet:
+                  petId: 4013
+                  petName: Luna
+                  petBreed: Siamkatze
+                  petImage: https://example.com/images/luna.jpg
+
+    delete:
+      summary: Termin löschen
+      description: |
+        Löscht einen bestehenden Termin anhand seiner ID.  
+        Diese Aktion ist endgültig und kann nicht rückgängig gemacht werden.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID des zu löschenden Termins
+          schema:
+            type: integer
+            example: 1101
+      responses:
+        '204':
+          description: Termin erfolgreich gelöscht (kein Inhalt zurückgegeben)
+        '404':
+          description: Termin mit der angegebenen ID wurde nicht gefunden
+
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key

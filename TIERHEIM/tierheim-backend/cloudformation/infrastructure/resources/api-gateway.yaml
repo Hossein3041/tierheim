@@ -1,0 +1,454 @@
+ApiGatewayIamRole:
+  Type: AWS::IAM::Role
+  Properties:
+    AssumeRolePolicyDocument:
+      Version: "2012-10-17"
+      Statement:
+        - Sid: ""
+          Effect: "Allow"
+          Principal:
+            Service:
+              - "apigateway.amazonaws.com"
+          Action:
+            - "sts:AssumeRole"
+    Path: "/"
+    Policies:
+      - PolicyName: LambdaAccess
+        PolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Effect: "Allow"
+              Action: "lambda:*"
+              Resource: !GetAtt ExampleFunction.Arn
+ApiGateway:
+  Type: AWS::ApiGateway::RestApi
+  Properties:
+    Name: !Sub
+      - "${Environment}-${ProjectName}-root"
+      - Environment: !Ref Environment
+        ProjectName: !Ref ProjectName
+    BinaryMediaTypes:
+      - "*/*"
+ApiGatewayCustomDomain:
+  Type: AWS::ApiGateway::DomainName
+  Properties:
+    DomainName: !Sub
+      - "${Environment}.${DomainName}"
+      - DomainName: !Ref DomainName
+        Environment: !Ref Environment
+    EndpointConfiguration:
+      Types:
+        - REGIONAL
+    RegionalCertificateArn: !Ref Route53Certificate
+  DependsOn:
+    - ApiGateway
+ApiRecordSet:
+  Type: AWS::Route53::RecordSet
+  Properties:
+    HostedZoneName: !Sub
+      - "${Domain}."
+      - Domain: !Ref DomainName
+    Name: !Sub
+      - "${Environment}.${DomainName}"
+      - DomainName: !Ref DomainName
+        Environment: !Ref Environment
+    Type: "A"
+    AliasTarget:
+      DNSName: !GetAtt ApiGatewayCustomDomain.RegionalDomainName
+      HostedZoneId: !GetAtt ApiGatewayCustomDomain.RegionalHostedZoneId
+      EvaluateTargetHealth: False
+ApiGatewayAuthorizer:
+  Type: AWS::ApiGateway::Authorizer
+  Properties:
+    Name: !Sub
+      - "${Environment}-${ProjectName}-${AppName}"
+      - Environment: !Ref Environment
+        ProjectName: !Ref ProjectName
+        AppName: !Ref AppName
+    Type: "COGNITO_USER_POOLS"
+    IdentitySource: "method.request.header.Authorization"
+    ProviderARNs:
+      - !Sub
+        - "arn:aws:cognito-idp:${Region}:${AccountId}:userpool/${UserPoolId}"
+        - Region: !Ref "AWS::Region"
+          AccountId: !Ref "AWS::AccountId"
+          UserPoolId: !GetAtt CognitoCustomResource.UserPoolId
+    RestApiId: !GetAtt ApiGateway.RestApiId
+FilesAPI:
+  Type: AWS::ApiGateway::Resource
+  Properties:
+    RestApiId: !GetAtt ApiGateway.RestApiId
+    ParentId: !GetAtt ApiGateway.RootResourceId
+    PathPart: "files"
+AssetAccessTypeApi:
+  Type: AWS::ApiGateway::Resource
+  DependsOn:
+    - "FilesAPI"
+  Properties:
+    RestApiId: !GetAtt ApiGateway.RestApiId
+    ParentId: !Ref FilesAPI
+    PathPart: "{access-type}"
+AssetAccessIdApi:
+  Type: AWS::ApiGateway::Resource
+  DependsOn:
+    - "AssetAccessTypeApi"
+  Properties:
+    RestApiId: !GetAtt ApiGateway.RestApiId
+    ParentId: !Ref AssetAccessTypeApi
+    PathPart: "{access-id}"
+AssetFileApi:
+  Type: AWS::ApiGateway::Resource
+  DependsOn:
+    - "AssetAccessIdApi"
+  Properties:
+    RestApiId: !GetAtt ApiGateway.RestApiId
+    ParentId: !Ref AssetAccessIdApi
+    PathPart: "{file}"
+UploadApi:
+  Type: AWS::ApiGateway::Resource
+  DependsOn:
+    - "FilesAPI"
+  Properties:
+    RestApiId: !GetAtt ApiGateway.RestApiId
+    ParentId: !Ref FilesAPI
+    PathPart: "upload"
+UploadAccessTypeApi:
+  Type: AWS::ApiGateway::Resource
+  DependsOn:
+    - "UploadApi"
+  Properties:
+    RestApiId: !GetAtt ApiGateway.RestApiId
+    ParentId: !Ref UploadApi
+    PathPart: "{access-type}"
+UploadAccessIdApi:
+  Type: AWS::ApiGateway::Resource
+  DependsOn:
+    - "UploadAccessTypeApi"
+  Properties:
+    RestApiId: !GetAtt ApiGateway.RestApiId
+    ParentId: !Ref UploadAccessTypeApi
+    PathPart: "{access-id}"
+UploadFileApi:
+  Type: AWS::ApiGateway::Resource
+  DependsOn:
+    - "UploadAccessIdApi"
+  Properties:
+    RestApiId: !GetAtt ApiGateway.RestApiId
+    ParentId: !Ref UploadAccessIdApi
+    PathPart: "{file}"
+FilesAWSMethodAssets:
+  Type: AWS::ApiGateway::Method
+  DependsOn:
+    - "AssetFileApi"
+  Properties:
+    RestApiId: !GetAtt ApiGateway.RestApiId
+    ResourceId: !Ref AssetFileApi
+    HttpMethod: GET
+    AuthorizationType: "COGNITO_USER_POOLS"
+    AuthorizerId: !GetAtt ApiGatewayAuthorizer.AuthorizerId
+    MethodResponses:
+      - StatusCode: 200
+        ResponseParameters:
+          method.response.header.Content-Length: integration.response.header.Content-Length
+          method.response.header.Content-Type: integration.response.header.Content-Type
+          method.response.header.Timestamp: integration.response.header.Date
+          method.response.header.Cache-Control: true
+    RequestParameters:
+      method.request.path.access-type: false
+      method.request.path.access-id: false
+      method.request.path.file: false
+    Integration:
+      Type: AWS
+      IntegrationHttpMethod: GET
+      Credentials: "arn:aws:iam::160184391904:role/APIGatewayS3ProxyPolicy"
+      Uri: !Sub "arn:aws:apigateway:${AWS::Region}:s3:path/${FilesS3Bucket}/{access-type}/{access-id}/{file}"
+      RequestParameters:
+        integration.request.path.access-type: method.request.path.access-type
+        integration.request.path.access-id: method.request.path.access-id
+        integration.request.path.file: method.request.path.file
+      IntegrationResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Content-Length: integration.response.header.Content-Length
+            method.response.header.Content-Type: integration.response.header.Content-Type
+            method.response.header.Timestamp: integration.response.header.Date
+            method.response.header.Cache-Control: "'max-age=31536000, immutable'"
+AWSUploadAssets:
+  Type: AWS::ApiGateway::Method
+  DependsOn:
+    - "UploadFileApi"
+  Properties:
+    RestApiId: !GetAtt ApiGateway.RestApiId
+    ResourceId: !Ref UploadFileApi
+    HttpMethod: PUT
+    AuthorizationType: "COGNITO_USER_POOLS"
+    AuthorizerId: !GetAtt ApiGatewayAuthorizer.AuthorizerId
+    MethodResponses:
+      - StatusCode: 200
+        ResponseParameters:
+          method.response.header.Content-Length: integration.response.header.Content-Length
+          method.response.header.Content-Type: integration.response.header.Content-Type
+          method.response.header.Timestamp: integration.response.header.Date
+    RequestParameters:
+      method.request.path.access-type: false
+      method.request.path.access-id: false
+      method.request.path.file: false
+    Integration:
+      Type: AWS
+      IntegrationHttpMethod: PUT
+      Credentials: "arn:aws:iam::160184391904:role/APIGatewayS3ProxyPolicy"
+      Uri: !Sub "arn:aws:apigateway:${AWS::Region}:s3:path/${FilesS3Bucket}/{access-type}/{access-id}/{file}"
+      RequestParameters:
+        integration.request.path.access-type: method.request.path.access-type
+        integration.request.path.access-id: method.request.path.access-id
+        integration.request.path.file: method.request.path.file
+      IntegrationResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Content-Length: integration.response.header.Content-Length
+            method.response.header.Content-Type: integration.response.header.Content-Type
+            method.response.header.Timestamp: integration.response.header.Date
+AppAPI:
+  Type: AWS::ApiGateway::Resource
+  Properties:
+    RestApiId: !GetAtt ApiGateway.RestApiId
+    ParentId: !GetAtt ApiGateway.RootResourceId
+    PathPart: "api"
+ApiDeployment:
+  Type: AWS::ApiGateway::Deployment
+  DependsOn:
+    - FilesAWSMethodAssets
+    - AWSUploadAssets
+    - AWSMethodRoot
+    - APIAWSMethodAssets
+    - MockMethodPrivate
+    - OptionsMethodPrivate
+    - MockMethodPublic
+    - OptionsMethodPublic
+    - ApiKeyPrivateProxyMethod
+  Properties:
+    RestApiId: !GetAtt ApiGateway.RestApiId
+    StageName: !Sub
+      - "${Environment}"
+      - Environment: !Ref Environment
+NextcloudUsagePlan:
+  Type: AWS::ApiGateway::UsagePlan
+  DependsOn:
+    - ApiDeployment
+  Properties:
+    Description: "The Usage-Plan for the Api-Key secured paths"
+    UsagePlanName: "Nextcloud-Api-Plan"
+    ApiStages:
+      - ApiId: !GetAtt ApiGateway.RestApiId
+        Stage: !Sub
+          - "${Environment}"
+          - Environment: !Ref Environment
+NextcloudApiKey:
+  Type: AWS::ApiGateway::ApiKey
+  DependsOn:
+    - ApiGateway
+  Properties:
+    Description: "The Api-Key for the Nextcloud to authenticate with the PawCloud application"
+    Enabled: true
+    GenerateDistinctId: true
+    Name: !Sub
+      - "${Environment} Nextcloud Api-Key"
+      - Environment: !Ref Environment
+NextcloudUsagePlanKey:
+  Type: AWS::ApiGateway::UsagePlanKey
+  Properties:
+    KeyId: !Ref NextcloudApiKey
+    KeyType: API_KEY
+    UsagePlanId: !Ref NextcloudUsagePlan
+PrivateApiKeyAPI:
+  Type: AWS::ApiGateway::Resource
+  Properties:
+    RestApiId: !GetAtt ApiGateway.RestApiId
+    ParentId: !Ref PrivateAPI
+    PathPart: "apikey"
+PrivateApiKeyAppAPI:
+  Type: AWS::ApiGateway::Resource
+  Properties:
+    RestApiId: !GetAtt ApiGateway.RestApiId
+    ParentId: !Ref PrivateApiKeyAPI
+    PathPart: "{proxy+}"
+PrivateAPI:
+  Type: AWS::ApiGateway::Resource
+  Properties:
+    RestApiId: !GetAtt ApiGateway.RestApiId
+    ParentId: !Ref AppAPI
+    PathPart: "private"
+PrivateAppAPI:
+  Type: AWS::ApiGateway::Resource
+  Properties:
+    RestApiId: !GetAtt ApiGateway.RestApiId
+    ParentId: !Ref PrivateAPI
+    PathPart: "{proxy+}"
+PublicAPI:
+  Type: AWS::ApiGateway::Resource
+  Properties:
+    RestApiId: !GetAtt ApiGateway.RestApiId
+    ParentId: !Ref AppAPI
+    PathPart: "public"
+PublicAppAPI:
+  Type: AWS::ApiGateway::Resource
+  Properties:
+    RestApiId: !GetAtt ApiGateway.RestApiId
+    ParentId: !Ref PublicAPI
+    PathPart: "{proxy+}"
+AssetsApi:
+  Type: AWS::ApiGateway::Resource
+  Properties:
+    RestApiId: !GetAtt ApiGateway.RestApiId
+    ParentId: !GetAtt ApiGateway.RootResourceId
+    PathPart: "{proxy+}"
+AWSMethodRoot:
+  Type: AWS::ApiGateway::Method
+  Properties:
+    RestApiId: !GetAtt ApiGateway.RestApiId
+    ResourceId: !GetAtt ApiGateway.RootResourceId
+    HttpMethod: GET
+    AuthorizationType: NONE
+    MethodResponses:
+      - StatusCode: 200
+        ResponseParameters:
+          method.response.header.Content-Length: integration.response.header.Content-Length
+          method.response.header.Content-Type: integration.response.header.Content-Type
+          method.response.header.Timestamp: integration.response.header.Date
+    Integration:
+      Type: AWS
+      IntegrationHttpMethod: GET
+      Credentials: "arn:aws:iam::160184391904:role/APIGatewayS3ProxyPolicy"
+      Uri: !Sub "arn:aws:apigateway:${AWS::Region}:s3:path/${S3Bucket}/index.html"
+      IntegrationResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Content-Length: integration.response.header.Content-Length
+            method.response.header.Content-Type: integration.response.header.Content-Type
+            method.response.header.Timestamp: integration.response.header.Date
+APIAWSMethodAssets:
+  Type: AWS::ApiGateway::Method
+  Properties:
+    RestApiId: !GetAtt ApiGateway.RestApiId
+    ResourceId: !Ref AssetsApi
+    HttpMethod: GET
+    AuthorizationType: NONE
+    MethodResponses:
+      - StatusCode: 200
+        ResponseParameters:
+          method.response.header.Content-Length: integration.response.header.Content-Length
+          method.response.header.Content-Type: integration.response.header.Content-Type
+          method.response.header.Timestamp: integration.response.header.Date
+    RequestParameters:
+      method.request.path.proxy: false
+    Integration:
+      Type: AWS
+      IntegrationHttpMethod: GET
+      Credentials: "arn:aws:iam::160184391904:role/APIGatewayS3ProxyPolicy"
+      Uri: !Sub "arn:aws:apigateway:${AWS::Region}:s3:path/${S3Bucket}/{proxy}"
+      RequestParameters:
+        integration.request.path.proxy: method.request.path.proxy
+      IntegrationResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Content-Length: integration.response.header.Content-Length
+            method.response.header.Content-Type: integration.response.header.Content-Type
+            method.response.header.Timestamp: integration.response.header.Date
+MockMethodPrivate:
+  Type: AWS::ApiGateway::Method
+  Properties:
+    RestApiId: !GetAtt ApiGateway.RestApiId
+    ResourceId: !Ref PrivateAppAPI
+    HttpMethod: ANY
+    AuthorizationType: "COGNITO_USER_POOLS"
+    AuthorizerId: !GetAtt ApiGatewayAuthorizer.AuthorizerId
+    MethodResponses:
+      - StatusCode: 200
+        ResponseModels:
+          application/json: "Empty"
+    Integration:
+      Type: AWS_PROXY
+      IntegrationHttpMethod: POST
+      Credentials: !GetAtt ApiGatewayIamRole.Arn
+      Uri: !Sub "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ExampleFunction.Arn}/invocations"
+OptionsMethodPrivate:
+  Type: AWS::ApiGateway::Method
+  Properties:
+    RestApiId: !GetAtt ApiGateway.RestApiId
+    ResourceId: !Ref PrivateAppAPI
+    HttpMethod: OPTIONS
+    AuthorizationType: NONE
+    MethodResponses:
+      - StatusCode: 200
+        ResponseModels:
+          application/json: "Empty"
+        ResponseParameters:
+          method.response.header.Access-Control-Allow-Headers: true
+          method.response.header.Access-Control-Allow-Methods: true
+          method.response.header.Access-Control-Allow-Origin: true
+    Integration:
+      Type: MOCK
+      RequestTemplates:
+        application/json: '{"statusCode": 200}'
+      IntegrationResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,Accept,X-Requested-With,Origin,Authentication'"
+            method.response.header.Access-Control-Allow-Methods: "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'"
+            method.response.header.Access-Control-Allow-Origin: "'*'"
+MockMethodPublic:
+  Type: AWS::ApiGateway::Method
+  Properties:
+    RestApiId: !GetAtt ApiGateway.RestApiId
+    ResourceId: !Ref PublicAppAPI
+    HttpMethod: ANY
+    AuthorizationType: NONE
+    MethodResponses:
+      - StatusCode: 200
+        ResponseModels:
+          application/json: "Empty"
+    Integration:
+      Type: AWS_PROXY
+      IntegrationHttpMethod: POST
+      Credentials: !GetAtt ApiGatewayIamRole.Arn
+      Uri: !Sub "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ExampleFunction.Arn}/invocations"
+OptionsMethodPublic:
+  Type: AWS::ApiGateway::Method
+  Properties:
+    RestApiId: !GetAtt ApiGateway.RestApiId
+    ResourceId: !Ref PublicAppAPI
+    HttpMethod: OPTIONS
+    AuthorizationType: NONE
+    MethodResponses:
+      - StatusCode: 200
+        ResponseModels:
+          application/json: "Empty"
+        ResponseParameters:
+          method.response.header.Access-Control-Allow-Headers: true
+          method.response.header.Access-Control-Allow-Methods: true
+          method.response.header.Access-Control-Allow-Origin: true
+    Integration:
+      Type: MOCK
+      RequestTemplates:
+        application/json: '{"statusCode": 200}'
+      IntegrationResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,Accept,X-Requested-With,Origin,Authentication'"
+            method.response.header.Access-Control-Allow-Methods: "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'"
+            method.response.header.Access-Control-Allow-Origin: "'*'"
+ApiKeyPrivateProxyMethod:
+  Type: AWS::ApiGateway::Method
+  Properties:
+    RestApiId: !GetAtt ApiGateway.RestApiId
+    ResourceId: !Ref PrivateApiKeyAppAPI
+    HttpMethod: ANY
+    AuthorizationType: NONE
+    ApiKeyRequired: true
+    Integration:
+      Type: AWS_PROXY
+      IntegrationHttpMethod: POST
+      Uri: !Sub "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ExampleFunction.Arn}/invocations"
+      Credentials: !GetAtt ApiGatewayIamRole.Arn
+    MethodResponses:
+      - StatusCode: 200

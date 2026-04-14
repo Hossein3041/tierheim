@@ -1,0 +1,9 @@
+TmpResourcesFile: /tmp/cloudformation_resources.yaml
+TmpParametersFile: /tmp/cloudformation_parameters.yaml
+TmpParametersConfigFile: /tmp/cloudformation_parameters_config.yaml
+TmpConditionsFile: /tmp/cloudformation_conditions.yaml
+TmpMappingsFile: /tmp/cloudformation_mappings.yaml
+TmpOutputsFile: /tmp/cloudformation_outputs.yaml
+TmpJsonParametersFile: /tmp/cloudformation_parameters.json
+TmpCodesFile: /tmp/cloudformation_codes.json
+TmpDeploymentFile: /tmp/cloudformation_deployment.yaml

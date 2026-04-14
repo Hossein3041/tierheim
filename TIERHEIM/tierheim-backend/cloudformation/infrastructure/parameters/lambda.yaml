@@ -1,0 +1,88 @@
+LambdaArchitecture:
+  Description: "Die Architektur der Lambda-Funktion."
+  Type: String
+  AllowedValues:
+    - x86_64
+    - arm64
+LambdaCodeS3Bucket:
+  Description: "Der Bucket, in dem der Code hochgeladen ist."
+  Type: String
+  MinLength: 3
+  MaxLength: 63
+  AllowedPattern: ^[0-9A-Za-z\.\-_]*(?<!\.)$
+LambdaCodeVersion:
+  Description: "Die Versionsnummer des deployten Codes."
+  Type: String
+  MinLength: 3
+  MaxLength: 63
+LambdaDescription:
+  Description: "Eine Beschreibung der Lambda-Funktion."
+  Type: String
+  MaxLength: 256
+LambdaHandler:
+  Description: "Die Methode, die als Handler für die Lambda-Anwendung dient."
+  Type: String
+  MaxLength: 128
+  AllowedPattern: ^[^\s]+$
+  ConstraintDescription: "Malformed input-Parameter LambdaHandler must match pattern ^[^\\s]+$"
+LambdaMemorySize:
+  Description: "Die zugewiesene RAM-Größe für die Lambda-Funktion."
+  Type: Number
+  MinValue: 128
+  MaxValue: 1024
+LambdaPackageType:
+  Description: "Die Art der Anwendung die hochgeladen werden soll."
+  Type: String
+  AllowedValues:
+    - Zip
+LambdaReservedConcurrentExecutions:
+  Description: "Die Anzahl der gleichzeitigen Ausführungen der Lambda-Funktion."
+  Type: Number
+  MinValue: 0
+  MaxValue: 1000
+LambdaRuntime:
+  Description: "Die Laufzeitumgebung für die Lambda-Funktion."
+  Type: String
+  AllowedValues:
+    - nodejs
+    - nodejs4.3
+    - nodejs6.10
+    - nodejs8.10
+    - nodejs10.x
+    - nodejs12.x
+    - nodejs14.x
+    - nodejs16.x
+    - java8
+    - java8.al2
+    - java11
+    - python2.7
+    - python3.6
+    - python3.7
+    - python3.8
+    - python3.9
+    - dotnetcore1.0
+    - dotnetcore2.0
+    - dotnetcore2.1
+    - dotnetcore3.1
+    - dotnet6
+    - dotnet8
+    - nodejs4.3-edge
+    - go1.x
+    - ruby2.5
+    - ruby2.7
+    - provided
+    - provided.al2
+    - nodejs18.x
+    - python3.10
+    - java17
+    - ruby3.2
+    - python3.11
+    - nodejs20.x
+    - provided.al2023
+    - python3.12
+    - java21
+LambdaTimeout:
+  Description: "Die maximale Ausführungsdauer der Lambda-Funktion in Sekunden."
+  Type: Number
+  MinValue: 1
+  MaxValue: 900
